@@ -1,0 +1,78 @@
+import { Link } from 'react-router-dom';
+import { Fragment, useEffect, useContext, useRef} from 'react';
+import HomeSearchItem from './HomeItems/HomeSearchItem';
+import QuizWipContext from '../../context/QuizWip/QuizWipContext';
+import AllPublicQuizesContext from '../../context/AllPublicQuizes/AllPublicQuizesContext';
+
+const Home = () => {
+    const searchText = useRef('');
+
+    const allPublicQuizesContext = useContext(AllPublicQuizesContext);
+    const { filterALLPublicQuizes, clearAllPublicQuizesFilter, filtered } = allPublicQuizesContext;
+    // const { publicQuizes} = allPublicQuizesContext;
+
+    const quizWipContext = useContext(QuizWipContext);
+    const { setLoggedOff } = quizWipContext;
+
+    useEffect(() => { 
+        setLoggedOff();
+        if(filtered === null) {
+            searchText.current.value = '';
+        }
+        // eslint-disable-next-line
+    }, []);
+
+    const clearInput = () => {
+        searchText.current.value = "";
+        clearAllPublicQuizesFilter();
+    };
+
+    function onChange(e) {
+        if((searchText.current.value !== '')) {
+            filterALLPublicQuizes(e.target.value);
+        }else{
+            clearAllPublicQuizesFilter();
+        };
+    };
+
+    return (
+        <Fragment>
+            <div className="home-landing-wraper">
+                <div className="home-register-container">
+                    <h1>Quiz Creation Made Easy</h1>
+                        <div className="register-form-home">
+                            <div className="register-today">
+                                <h2>Register With Us Today</h2>
+                            </div>
+                            <div className="reg-btn-home"><Link to="/register">Register</Link></div>
+                        </div>
+                </div>
+            </div>
+            <div className="search-wrapper">
+                <div className='search-all-quizes'>Search All Quizes</div>
+                <div className='search-bar-dropdown'>
+                    <input ref={searchText} type="text" className='search' placeholder="Search All Quizes" onChange={onChange}/>
+                    <div className='list-group'>
+                        {filtered !== null && filtered.map(filter => (
+                        <HomeSearchItem quizName={filter.quizName} key={filter.id} clearInput={clearInput}/>
+                        ))}
+                    </div>
+                </div>
+            </div>
+            
+            {/* <div className="recent-quizes-wrapper">
+                <div className="most-recent">
+                    <h1>Most Recent Quizes</h1>
+                        <div className="home-quiz-container">
+                            <Link to="/"><div className="quiz-item-home"></div></Link>
+                            <Link to="/"><div className="quiz-item-home"></div></Link>
+                            <Link to="/"><div className="quiz-item-home"></div></Link>
+                            <Link to="/"><div className="quiz-item-home"></div></Link>
+                        </div>
+                </div>
+            </div> */}
+        </Fragment>
+    )
+};
+
+export default Home;
