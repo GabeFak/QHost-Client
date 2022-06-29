@@ -17,7 +17,9 @@ const PublishedQuizesList= ({ publicQuizes }) => {
 
     const onChange = (e) => {
         if(text.current.value !== '') {
-            quizPublicContext.filterPublicQuizes(e.target.value);
+            if(!text.current.value.includes('\\')) {
+                quizPublicContext.filterPublicQuizes(e.target.value);
+            };
         }else{
             quizPublicContext.clearFilter();
         };

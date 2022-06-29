@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect, useContext, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import AuthContext from '../../context/Auth/AuthContext';
 import AllPublicQuizesContext from "../../context/AllPublicQuizes/AllPublicQuizesContext";
 
 let currentIndex = 0;
@@ -9,6 +10,9 @@ const ActiveQuiz = () => {
 
     const allPublicQuizesContext = useContext(AllPublicQuizesContext);
     const {currentActiveQuiz, addToViews} = allPublicQuizesContext;
+
+    const authContext = useContext(AuthContext);
+    const { logout, isAuthenticated } = authContext;
 
     //state for quiestions, current index of question, and quiz name
     const [previewQuizQuestions, setPreviewQuizQuestions] = useState({
@@ -45,9 +49,14 @@ const ActiveQuiz = () => {
     const [showQuestion, setShowQuestion] = useState(false);
 
     useEffect(() => {
+        if(isAuthenticated) {
+            nav('/dashboard');
+        }else{
+            logout();
+        }
         setPreviewQuizQuestions({...previewQuizQuestions, quizName: currentActiveQuiz.quizName, quizQuestions: currentActiveQuiz.quizQuestions});
         // eslint-disable-next-line
-    }, []);
+    }, [isAuthenticated]);
     
     const start = () => {
         addToViews(currentActiveQuiz.id);

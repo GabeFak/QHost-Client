@@ -4,9 +4,13 @@ import { useParams, useNavigate} from 'react-router-dom';
 // import QuizPreviewBtn from './QuizPreviewItem/QuizPreviewBtn';
 import QuizPublicContext from '../../context/QuizPublic/QuizPublicContext';
 import QuizWipContext from '../../context/QuizWip/QuizWipContext';
+import AuthContext from '../../context/Auth/AuthContext';
 
 let currentIndex = 0;
 const QuizPreview = () => {
+    const authContext = useContext(AuthContext);
+    const { loadUser } = authContext;
+
     const nav = useNavigate();
 
     const quizPublicContext = useContext(QuizPublicContext);
@@ -53,6 +57,7 @@ const QuizPreview = () => {
     const quizParam = useParams();
 
     useEffect(() => {
+        loadUser();
         if(quizParam.isPub === 'Unpublished') { 
             setPreviewQuizQuestions({...previewQuizQuestions, quizName: quizEdit.quizName, quizQuestions: quizEdit.quizQuestions});
         }else if(quizParam.isPub === 'Published') {

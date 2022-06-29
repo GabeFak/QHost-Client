@@ -7,8 +7,12 @@ import QuestionEditor from './quizEditorComponents/QuestionEditor';
 import QuestionEditorPublic from './quizEditorComponents/QuestionEditorPublic';
 import QuizWipContext from '../../context/QuizWip/QuizWipContext';
 import QuizPublicContext from '../../context/QuizPublic/QuizPublicContext';
+import AuthContext from '../../context/Auth/AuthContext';
 
 const QuizEditor = () => {
+    const authContext = useContext(AuthContext);
+    const { loadUser } = authContext;
+
     const quizContext = useContext(QuizWipContext);
     const { fillInQuizEditState, loading, setLoggedIn, catchFillInNewQuizFinishFalse, FillInNewQuizFinish } = quizContext;
 
@@ -18,6 +22,7 @@ const QuizEditor = () => {
     const quizParam = useParams();
 
     useEffect(() => {
+        loadUser();
         if(FillInNewQuizFinish === true) {
             catchFillInNewQuizFinishFalse();
         }else if(quizParam.isPub === 'Unpublished') { 

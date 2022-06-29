@@ -948,3 +948,11 @@ footer h3 {
   font-size: 1.6em;
   text-align: center;
 }
+
+/* Alert */
+.alert {
+  font-family: "Courier New", Courier, monospace;
+}
+.alert-danger {
+  color: red;
+}

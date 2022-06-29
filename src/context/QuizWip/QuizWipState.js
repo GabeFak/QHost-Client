@@ -137,6 +137,8 @@ const QuizWipState = props => {
         dispatch({ type: CLEAR_CURRENT_QUESTION_EDIT});
     }
 
+
+    
     const addQuestion = newQuestion => {
         setLoading();
         dispatch({ type: ADD_QUESTION, payload: newQuestion});

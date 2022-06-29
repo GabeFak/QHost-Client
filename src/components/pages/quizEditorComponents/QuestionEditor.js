@@ -35,7 +35,7 @@ const QuestionEditor = () => {
                 WrongAnswer3: ''
             });
         }
-    }, [setQuestionEdit]);
+    }, [currentQuestionEdit, setQuestionEdit]);
 
     const submitQ = e => {
         e.preventDefault();

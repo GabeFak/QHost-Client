@@ -1,11 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Fragment, useEffect, useContext, useRef} from 'react';
 import HomeSearchItem from './HomeItems/HomeSearchItem';
+import AuthContext from '../../context/Auth/AuthContext';
 import QuizWipContext from '../../context/QuizWip/QuizWipContext';
 import AllPublicQuizesContext from '../../context/AllPublicQuizes/AllPublicQuizesContext';
 
 const Home = () => {
     const searchText = useRef('');
+    const nav = useNavigate();
 
     const allPublicQuizesContext = useContext(AllPublicQuizesContext);
     const { filterALLPublicQuizes, clearAllPublicQuizesFilter, filtered } = allPublicQuizesContext;
@@ -14,13 +16,22 @@ const Home = () => {
     const quizWipContext = useContext(QuizWipContext);
     const { setLoggedOff } = quizWipContext;
 
+    const authContext = useContext(AuthContext);
+    const { isAuthenticated, logout} = authContext;
+
     useEffect(() => { 
         setLoggedOff();
+        if(isAuthenticated) {
+            nav('/dashboard');
+        }else{
+            logout();
+        }
+
         if(filtered === null) {
             searchText.current.value = '';
-        }
+        };
         // eslint-disable-next-line
-    }, []);
+    }, [isAuthenticated]);
 
     const clearInput = () => {
         searchText.current.value = "";

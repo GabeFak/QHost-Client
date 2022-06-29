@@ -4,8 +4,12 @@ import PublishedQuizesList from './dashboardComponents/PublishedQuizesList';
 import MainDashboard from './dashboardComponents/MainDashboard';
 import QuizWipContext from '../../context/QuizWip/QuizWipContext';
 import QuizPublicContext from '../../context/QuizPublic/QuizPublicContext';
+import AuthContext from '../../context/Auth/AuthContext';
 
 const Dashboard = () => {
+    const authContext = useContext(AuthContext);
+    const { loadUser } = authContext;
+
     const quizWipContext = useContext(QuizWipContext);
     const { setLoggedIn } = quizWipContext;
 
@@ -13,8 +17,9 @@ const Dashboard = () => {
     const { publicQuizes } = quizPublicContext;
     
     useEffect(() => { 
+        loadUser();
         setLoggedIn();
-        //eslint-disable-next-line
+        //eslint-disable-next-line 
     }, []);
 
     return (

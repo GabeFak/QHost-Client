@@ -1,10 +1,13 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import setAuthToken from './Utils/setAuthToken';
 import Navbar from './components/layout/Navbar';
 import Home from "./components/pages/Home";
 import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
+import PrivateRoute from './components/routing/PrivateRoute';
+// import Alerts from './components/layout/Alerts';
 // import AllPublicQuizes from './components/pages/AllPublicQuizes';
 import Footer from "./components/layout/Footer";
 import Dashboard from './components/pages/Dashboard';
@@ -15,35 +18,54 @@ import QuizWipState from './context/QuizWip/QuizWipState';
 import QuizPublicState from './context/QuizPublic/QuizPublicState';
 import UserInfoState from './context/UserInfo/UserInfoState';
 import AllPublicQuizesState from './context/AllPublicQuizes/AllPublicQuizesState';
+import AuthState from './context/Auth/AuthState';
+import AlertState from './context/Alert/AlertState';
+
+
+if(localStorage.token) {
+    setAuthToken(localStorage.token);
+}
 
 function App() {
   return (
-    <UserInfoState>
-      <AllPublicQuizesState>
-          <QuizPublicState>
-            <QuizWipState>
-              <Router >
-                <Fragment>
-                  <Navbar />
-                    <div className="container">
-                      <Routes>
-                        <Route path="/" element= {<Home />}/>
-                        <Route path="/login" element= {<Login />}/>
-                        <Route path="/Register" element= {<Register />}/>
-                        {/* <Route path="/AllPublicQuizes" element= {<AllPublicQuizes />}/> */}
-                        <Route path="/Dashboard" element= {<Dashboard />}/>
-                        <Route path="/QuizEditor/:quizName/:isPub" element= {<QuizEditor />}/>
-                        <Route path="/QuizPreview/:quizName/:isPub" element= { <QuizPreview />}/> 
-                        <Route path="/ActiveQuiz/:quizName" element= { <ActiveQuiz />}/> 
-                      </Routes>
-                    </div>
-                  <Footer />
-                </Fragment>
-              </Router>
-            </QuizWipState>
-          </QuizPublicState>
-      </AllPublicQuizesState>
-    </UserInfoState>
+    <AlertState>
+      <AuthState>
+        <UserInfoState>
+          <AllPublicQuizesState>
+              <QuizPublicState>
+                <QuizWipState>
+                  <Router >
+                    <Fragment>
+                      <Navbar />
+                      {/* <Alerts /> */}
+                        <div className="container">
+                          <Routes>
+                            <Route path="/" element= {<Home />}/>
+                            <Route path="/login" element= {<Login />}/>
+                            <Route path="/Register" element= {<Register />}/>
+                            {/* <Route path="/AllPublicQuizes" element= {<AllPublicQuizes />}/> */}
+
+                            <Route path="/Dashboard" element={<PrivateRoute />}>
+                            <Route path="/Dashboard" element= {<Dashboard />}/></Route>
+                            
+                            <Route path="/QuizEditor/:quizName/:isPub" element={<PrivateRoute />}>
+                            <Route path="/QuizEditor/:quizName/:isPub" element= {<QuizEditor />}/></Route>
+
+                            <Route path="/QuizPreview/:quizName/:isPub" element={<PrivateRoute />}>
+                            <Route path="/QuizPreview/:quizName/:isPub" element= { <QuizPreview />}/></Route>
+
+                            <Route path="/ActiveQuiz/:quizName" element= { <ActiveQuiz />}/> 
+                          </Routes>
+                        </div>
+                      <Footer />
+                    </Fragment>
+                  </Router>
+                </QuizWipState>
+              </QuizPublicState>
+          </AllPublicQuizesState>
+        </UserInfoState>
+      </AuthState>
+    </AlertState>
   )
 };
 
