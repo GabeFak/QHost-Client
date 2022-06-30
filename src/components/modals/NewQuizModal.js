@@ -1,23 +1,30 @@
 import React from 'react';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import UserInfoContext from '../../context/UserInfo/UserInfoContext';
+// import UserInfoContext from '../../context/UserInfo/UserInfoContext';
 import QuizWipContext from '../../context/QuizWip/QuizWipContext';
+import AuthContext from '../../context/Auth/AuthContext';
+
 
 const NewQuizModal = ({ closeModal }) => {
-    const userInfoContext = useContext(UserInfoContext);
-    const { UserInfo } = userInfoContext;
-    const { user, userName } = UserInfo;
+    // const userInfoContext = useContext(UserInfoContext);
+    // const { UserInfo } = userInfoContext;
+    // const { user, userName } = UserInfo;
+
+    const authContext = useContext(AuthContext);
+    const { user } = authContext;
+    const {_id, name } = user;
+
 
     const quizWipContext = useContext(QuizWipContext);
-    const { fillInNewQuiz } = quizWipContext;
+    const { fillInNewQuiz, addQuizToWip } = quizWipContext;
 
     const nav = useNavigate();
 
     const [newQInfo, setNewQInfo] = useState({
-        id: 'genByDB',
-        user: user,
-        userName: userName,
+        // id: 'genByDB',
+        user: _id,
+        userName: name,
         quizName: '',
         isPublished: 'Unpublished',
         date: 'date',
@@ -31,6 +38,7 @@ const NewQuizModal = ({ closeModal }) => {
         e.preventDefault();
         if(newQInfo.quizName !== '') {
             fillInNewQuiz(newQInfo);
+            // addQuizToWip(newQInfo);
             nav(`/QuizEditor/${newQInfo.quizName}/${newQInfo.isPublished}`);
             closeModal(false); 
         }else{

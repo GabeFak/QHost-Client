@@ -13,11 +13,13 @@ const userInfoContext = useContext(UserInfoContext);
 const { UserInfo } = userInfoContext;
 
 const quizContext = useContext(QuizWipContext);
-const { loggedIn } = quizContext;
+const { loggedIn, clearQuizWIPS } = quizContext;
 
 const onLogout = () => {
     logout();
-}
+    clearQuizWIPS();
+}; 
+
 if(loading) {
     return ''
 } else {

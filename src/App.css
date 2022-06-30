@@ -570,6 +570,11 @@ footer h3 {
   margin-left: 5px;
 }
 
+.grey-out {
+  background-color: var(--light-grey);
+  cursor: alias; 
+}
+
 @media screen and (max-width: 1569px) {
   .make-new-quiz h1,
   .your-top-quiz h1 {

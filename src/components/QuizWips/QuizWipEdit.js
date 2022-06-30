@@ -9,7 +9,7 @@ const QuizWipEdit = () => {
     return (
         <Fragment>
             {quizes.map(quiz => (
-                <QuizWipEditItem key={quiz.id} quiz={quiz} />
+                <QuizWipEditItem key={quiz._id} quiz={quiz} />
             ))}
         </Fragment>
     )

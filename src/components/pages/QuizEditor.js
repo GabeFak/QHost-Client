@@ -14,7 +14,7 @@ const QuizEditor = () => {
     const { loadUser } = authContext;
 
     const quizContext = useContext(QuizWipContext);
-    const { fillInQuizEditState, loading, setLoggedIn, catchFillInNewQuizFinishFalse, FillInNewQuizFinish } = quizContext;
+    const { fillInQuizEditState, loading, setLoggedIn, catchFillInNewQuizFinishFalse, FillInNewQuizFinish, quizes, getQuizWips} = quizContext;
 
     const quizPublicContext = useContext(QuizPublicContext);
     const { fillInQuizEditStatePublic, loadingPublic} = quizPublicContext;
@@ -30,11 +30,12 @@ const QuizEditor = () => {
         }else if(quizParam.isPub === 'Published') {
             fillInQuizEditStatePublic(quizParam.quizName);
         };
+    
         setLoggedIn();
         //eslint-disable-next-line
     }, []);
 
-    if(loading || loadingPublic) return <Spinner />;
+    if(loading || loadingPublic) { return <Spinner />;}else{
 
     return (
         <div className="dashboard-container">
@@ -51,6 +52,7 @@ const QuizEditor = () => {
             </div>
         </div>
     )
+            }
 };
 
 export default QuizEditor;

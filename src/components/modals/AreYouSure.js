@@ -5,7 +5,7 @@ import QuizPublicContext from '../../context/QuizPublic/QuizPublicContext';
 import QuizWipContext from '../../context/QuizWip/QuizWipContext';
 import AllPublicQuizesContext from '../../context/AllPublicQuizes/AllPublicQuizesContext';
 
-const AreYouSure = ({ quizName, quizToDeletePublic, setAreYouSure, isPublished}) => {
+const AreYouSure = ({ quizID, quizToDeletePublic, setAreYouSure, isPublished}) => {
     const quizPublicContext = useContext(QuizPublicContext);
     const { deletePublicQuiz } = quizPublicContext;
 
@@ -19,7 +19,7 @@ const AreYouSure = ({ quizName, quizToDeletePublic, setAreYouSure, isPublished})
 
     const deleteAction = () => {
         if(isPublished === 'Unpublished') {
-            deleteWipQuiz(quizName); //Checks if user is deleting an unpublished quiz, deletes from different state
+            deleteWipQuiz(quizID); //Checks if user is deleting an unpublished quiz, deletes from different state
         }else if(isPublished === 'Published' || isPublished === undefined) {
             deletePublicQuiz(quizToDeletePublic);
             deletePublicQuizFromPublicDatabase(quizToDeletePublic);

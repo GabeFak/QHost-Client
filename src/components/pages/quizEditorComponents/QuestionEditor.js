@@ -4,12 +4,13 @@ import Spinner from '../../layout/Spinner';
 import QuestionEditorMacroButtons from './questionEditorButtons/QuestionEditorMacroButtons';
 import PleaseAddTitleAlert from '../../modals/PleaseAddTitleAlert';
 import QuizWipContext from '../../../context/QuizWip/QuizWipContext';
+import QuizEditor from '../QuizEditor';
 
 const QuestionEditor = () => {
     const [modal, setModal] = useState(false);
 
     const quizToEdit = useContext(QuizWipContext);
-    const { loading, currentQuestionEdit, addQuestion, deleteQuestion, updateQuestion} = quizToEdit;
+    const { loading, currentQuestionEdit, addQuestion, deleteQuestion, updateQuestion, quizEdit} = quizToEdit;
 
     const [questionEdit, setQuestionEdit] = useState({
         title: '',
@@ -39,7 +40,13 @@ const QuestionEditor = () => {
 
     const submitQ = e => {
         e.preventDefault();
-        if(questionEdit.title !== '' && questionEdit.Answer !== '') {
+        let nameTaken = false;
+        quizEdit.quizQuestions.map(qName => {
+            if(qName.title === questionEdit.title){
+                nameTaken = true;
+            }
+        });
+        if(questionEdit.title !== '' && questionEdit.Answer !== '' && nameTaken !== true) {
             addQuestion(questionEdit);
         }else{
             setModal(true);

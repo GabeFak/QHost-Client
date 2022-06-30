@@ -6,7 +6,7 @@ const PleaseAddTitleAlert = ({ closeModal }) => {
             <div className='modal-border'>
                 <div className='modal-container'>
                     <div className='modal-title'>
-                        <h1>Please add a Question and an Answer</h1>
+                        <h1>Please add a Question and an Answer. Questions cannot have the same name.</h1>
                     </div>
                     <div className='modal-selection-option'>
                         <button className="modal-button-grey" onClick={() => {closeModal(false)}}>Cancel</button>

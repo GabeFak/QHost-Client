@@ -13,11 +13,32 @@ import {
     UPDATE_PRIVATE_QUIZ,
     FILL_IN_NEW_QUIZ,
     CATCH_FILL_IN_NEW_QUIZ_FINISH,
-    CATCH_FILL_IN_NEW_QUIZ_FINISH_FALSE
+    CATCH_FILL_IN_NEW_QUIZ_FINISH_FALSE,
+    QUIZWIP_ERROR,
+    GET_QUIZ_WIPS,
+    CLEAR_QUIZ_WIPS
 } from '../types';
 
 const Reducer = (state, action) => {
     switch(action.type) {
+        case GET_QUIZ_WIPS:
+            return {
+                ...state,
+                quizes: action.payload,
+                loading: false
+            };
+            case CLEAR_QUIZ_WIPS:
+                return {
+                    ...state,
+                    loading: false,
+                    error: null,
+                    quizes: [],
+                    quizEdit: null,
+                    newQuizFill: null,
+                    currentQuestionEdit: null,
+                    loggedIn: false,
+                    FillInNewQuizFinish: false
+                }
         case SET_LOADING:
             return {
                 ...state,
@@ -34,7 +55,7 @@ const Reducer = (state, action) => {
                 loggedIn: false
             };
         case FILL_IN_NEW_QUIZ:
-            let orderArray = [['id', action.payload.id], 
+            let orderArray = [
                               [ 'user' , action.payload.user],
                               [ 'userName' , action.payload.userName],
                               [ 'quizName' , action.payload.quizName],
@@ -122,24 +143,31 @@ const Reducer = (state, action) => {
         case ADD_QUIZ:
             return {
                 ...state,
-                quizes: [action.payload, ...state.quizes]
+                quizes: [...state.quizes, action.payload],
+                loading: false
             };
         case DELETE_QUIZ_WIP:
-            let quizListMinusDeletedQuiz = state.quizes.filter(quiz => quiz.quizName !== action.payload);
+            let quizListMinusDeletedQuiz = state.quizes.filter(quiz => quiz._id !== action.payload);
 
                 return {
                     ...state,
                     quizes: quizListMinusDeletedQuiz
                 };
         case UPDATE_PRIVATE_QUIZ:
-            let privateQuizToUpdate = state.quizes.filter(quiz => quiz.id !== action.payload.id);
+            let privateQuizToUpdate = state.quizes.filter(quiz => quiz._id !== action.payload._id);
 
             privateQuizToUpdate.push(action.payload);
 
             return {
                 ...state,
-                quizes: privateQuizToUpdate
+                quizes: privateQuizToUpdate,
+                loading: false
             };
+        case QUIZWIP_ERROR: 
+            return {
+              ...state,
+              error: action.payload  
+            }
         default:
             return state;
     };

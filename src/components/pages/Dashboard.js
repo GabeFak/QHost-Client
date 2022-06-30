@@ -11,7 +11,7 @@ const Dashboard = () => {
     const { loadUser } = authContext;
 
     const quizWipContext = useContext(QuizWipContext);
-    const { setLoggedIn } = quizWipContext;
+    const { setLoggedIn, getQuizWips, loading } = quizWipContext;
 
     const quizPublicContext = useContext(QuizPublicContext);
     const { publicQuizes } = quizPublicContext;
@@ -19,6 +19,7 @@ const Dashboard = () => {
     useEffect(() => { 
         loadUser();
         setLoggedIn();
+        getQuizWips();
         //eslint-disable-next-line 
     }, []);
 
