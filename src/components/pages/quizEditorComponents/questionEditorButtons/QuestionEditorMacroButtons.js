@@ -162,7 +162,7 @@ const QuestionEditorMacroButtons = () => {
                 <AreYouSure quizID={quizEdit._id} setAreYouSure={setAreYouSure} isPublished={isQuizPublished.isPub} />}
 
             { areYouSure.openModal && !areYouSure.isNotPublished && 
-                <AreYouSure quizToDeletePublic={quizEditPublic._id} setAreYouSure={setAreYouSure} isPublished={isQuizPublished.isPub} />}
+                <AreYouSure postId={quizEditPublic.postId} quizToDeletePublic={quizEditPublic._id} setAreYouSure={setAreYouSure} isPublished={isQuizPublished.isPub} />}
             {seeStatsModal && <SeeStatsModalPublicQuizEdit resetModal={setSeeStatsModal} views={quizEditPublic.views} quizName={quizEditPublic.quizName}/>}
         </Fragment>
   )

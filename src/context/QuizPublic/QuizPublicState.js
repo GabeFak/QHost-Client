@@ -19,7 +19,11 @@ import {
     SET_TOP_QUIZ,
     QUIZPUB_ERROR,
     GET_QUIZ_PUB,
-    CLEAR_QUIZ_PUB 
+    CLEAR_QUIZ_PUB,
+    ADD_TO_PUBLIC, 
+    GET_FROM_PUBLIC,
+    DELETE_FROM_PUBLIC,
+    UPDATE_PUBLIC
 } from '../types';
 
 
@@ -86,7 +90,8 @@ const QuizPublicState = props => {
             isPublished: '',
             date: '',
             views: '',
-            quizQuestions: []
+            quizQuestions: [],
+            postId: ''
         },
         error: null,
         quizNamesOrganizedByViews: null,
@@ -151,8 +156,9 @@ const QuizPublicState = props => {
     };
 
     const addQuizPublic = async newPublicQuiz => {
-        console.log(newPublicQuiz)
+        // console.log(newPublicQuiz)
         setLoading();
+        newPublicQuiz.postId = newPublicQuiz._id
         const config = {
             headers: {
                 'Content-Type': 'application/json'
@@ -166,13 +172,28 @@ const QuizPublicState = props => {
         } catch (err) {
             dispatch({ type: QUIZPUB_ERROR, payload: err.response.msg });
         };
+
+        try {
+           await axios.post('/api/public', newPublicQuiz, config);
+            console.log('add to public ')
+            // dispatch({ type: ADD_PUBLIC_QUIZ, payload: res.data });
+        } catch (err) {
+            dispatch({ type: QUIZPUB_ERROR, payload: err.response.msg });
+        };
         // dispatch({ type: ADD_PUBLIC_QUIZ, payload: newPublicQuiz });
     };
 
-    const deletePublicQuiz = async currentQuizID => {
+    const deletePublicQuiz = async (currentQuizID, postId) => {
         try {
             await axios.delete(`/api/quizes/${currentQuizID}`);
             dispatch({ type:  DELETE_QUIZ_PUBLIC, payload: currentQuizID });
+        } catch (err) {
+            dispatch({ type: QUIZPUB_ERROR, payload: err.response.msg });
+        };
+        try {
+            console.log(postId)
+            await axios.delete(`/api/public/${postId}`);
+            // dispatch({ type:  DELETE_QUIZ_PUBLIC, payload: currentQuizID });
         } catch (err) {
             dispatch({ type: QUIZPUB_ERROR, payload: err.response.msg });
         };
@@ -210,7 +231,33 @@ const QuizPublicState = props => {
     };
     //SetState will set the state from the currently selected quiz wip to edit
     //if id = null (the user pressed new quiz) then create id and blank template.
-    
+    ///////////////////////
+    /////////////////////
+    ////////////////////
+    //////////////////////
+    // Public Public stuff
+
+    // // ADD_TO_PUBLIC
+    // const addToPublic = async addToPublicAccess => {
+    //     console.log(addToPublicAccess)
+    //     setLoading();
+    //     const config = {
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         }
+    //     }
+
+    //     try {
+    //         const res = await axios.post('/api/public', addToPublicAccess, config);
+
+    //         dispatch({ type: ADD_PUBLIC_QUIZ, payload: res.data });
+    //     } catch (err) {
+    //         dispatch({ type: QUIZPUB_ERROR, payload: err.response.msg });
+    //     };
+    // }
+
+
+
     return (
         <quizPublicContext.Provider
             value={{

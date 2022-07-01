@@ -20,7 +20,8 @@ const MainDashboard = ({publicQuizes}) => {
     });
 
     const [selectedPublicQuizToDelete, setSelectPublicQuizToDelete] = useState({
-      publicQuizToDeleteID: null
+      publicQuizToDeleteID: null,
+      publicQuizToDeletePostId: null
     });
 
     const [areYouSure, setAreYouSure] = useState(false);
@@ -56,7 +57,7 @@ const MainDashboard = ({publicQuizes}) => {
                 <WipSelect />
             </div>
                 { modal && <EditPublicModal quizToDel={setSelectPublicQuizToDelete} setAreYouSure={setAreYouSure} modalState={modalState} closeModal={setModal} publicQuizes={publicQuizes} setSeeStats={setSeeStats} setSelectedQuizStats={setSelectedQuizStats} getViews={getViews}/>}
-                { areYouSure && <AreYouSure quizToDeletePublic={selectedPublicQuizToDelete.publicQuizToDeleteID} setAreYouSure={setAreYouSure} />}
+                { areYouSure && <AreYouSure postId={selectedPublicQuizToDelete.publicQuizToDeletePostId} quizToDeletePublic={selectedPublicQuizToDelete.publicQuizToDeleteID} setAreYouSure={setAreYouSure} />}
                 { seeStats && <SeeStats selectedQuizStats={selectedQuizStats} resetModal={setSeeStats}/>}
                 { newQuizModal && <NewQuizModal closeModal={setNewQuizModal} />}
                 { topQuizModalState && <YourTopQuizModal closeModal={setTopQuizModalState}/>}

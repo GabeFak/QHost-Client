@@ -5,7 +5,10 @@ FILL_IN_CURRENT_ACTIVE_QUIZ,
 ADD_TO_VIEWS,
 ADD_PUBLIC_QUIZ_TO_PUBLIC_DATABASE,
 UPDATE_PUBLIC_QUIZ_PUBLIC_DATABASE,
-DELETE_QUIZ_FROM_DATABASE
+DELETE_QUIZ_FROM_DATABASE,
+GET_FROM_PUBLIC,
+SET_LOADING_PUBLIC_ACCESS,
+QUIZPUB_ERROR
 } from '../types';
 
 const Reducer = (state, action) => {
@@ -70,9 +73,26 @@ const Reducer = (state, action) => {
             ...state,
             publicQuizes: quizListMinusDeletedQuiz
         };
+    case GET_FROM_PUBLIC: 
+        return {
+            ...state,
+            publicQuizes: action.payload,
+            loadingPublicAccessQuizes: false
+        };
+    case SET_LOADING_PUBLIC_ACCESS:
+        return {
+            ...state,
+            loadingPublicAccessQuizes: true
+        }
+    case QUIZPUB_ERROR:
+        return {
+            ...state,
+            error: action.payload  
+        }
         default:
             return state;
     };
+
 };
 
 export default  Reducer;

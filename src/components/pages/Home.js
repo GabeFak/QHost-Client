@@ -10,7 +10,7 @@ const Home = () => {
     const nav = useNavigate();
 
     const allPublicQuizesContext = useContext(AllPublicQuizesContext);
-    const { filterALLPublicQuizes, clearAllPublicQuizesFilter, filtered } = allPublicQuizesContext;
+    const { filterALLPublicQuizes, clearAllPublicQuizesFilter, filtered, getFromPublic, publicQuizes } = allPublicQuizesContext;
     // const { publicQuizes} = allPublicQuizesContext;
 
     const quizWipContext = useContext(QuizWipContext);
@@ -21,6 +21,8 @@ const Home = () => {
 
     useEffect(() => { 
         setLoggedOff();
+        getFromPublic();
+        // console.log(publicQuizes)
         if(isAuthenticated) {
             nav('/dashboard');
         }else{
@@ -65,7 +67,7 @@ const Home = () => {
                     <input ref={searchText} type="text" className='search' placeholder="Search All Quizes" onChange={onChange}/>
                     <div className='list-group'>
                         {filtered !== null && filtered.map(filter => (
-                        <HomeSearchItem quizName={filter.quizName} key={filter.id} clearInput={clearInput}/>
+                        <HomeSearchItem quizName={filter.quizName} key={filter._id} clearInput={clearInput}/>
                         ))}
                     </div>
                 </div>

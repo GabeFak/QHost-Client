@@ -14,7 +14,11 @@ import {
     SET_TOP_QUIZ,
     QUIZPUB_ERROR,
     GET_QUIZ_PUB,
-    CLEAR_QUIZ_PUB
+    CLEAR_QUIZ_PUB,
+    ADD_TO_PUBLIC, 
+    GET_FROM_PUBLIC,
+    DELETE_FROM_PUBLIC,
+    UPDATE_PUBLIC
 } from '../types';
 
 const Reducer = (state, action) => {
@@ -159,6 +163,12 @@ const Reducer = (state, action) => {
                 ...state,
                 quizNamesOrganizedByViews: quizPopularityStats
             };
+            // PUBLIC PUBLIC STARTS HERE
+
+
+
+
+
         default:
             return state;
     };

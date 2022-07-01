@@ -7,7 +7,7 @@ import QuizPublicContext from '../../../context/QuizPublic/QuizPublicContext';
 
 const QuestionEditorPublic = () => {
     const quizToEditPublic = useContext(QuizPublicContext);
-    const { currentQuestionEditPublic, updateQuestionPublic, deleteQuestionPublic, loadingPublic, addQuestionPublic } = quizToEditPublic;
+    const { currentQuestionEditPublic, updateQuestionPublic, deleteQuestionPublic, loadingPublic, addQuestionPublic, quizEditPublic } = quizToEditPublic;
 
     const [modal, setModal] = useState(false);
 
@@ -38,7 +38,13 @@ const QuestionEditorPublic = () => {
 
     const submitQ = e => {
         e.preventDefault();
-        if(questionEditPublic.title !== '' && questionEditPublic.Answer !== '') {
+        let nameTaken = false;
+        quizEditPublic.quizQuestions.map(qName => {
+            if(qName.title === questionEditPublic.title){
+                nameTaken = true;
+            }
+        });
+        if(questionEditPublic.title !== '' && questionEditPublic.Answer !== '' && nameTaken !== true) {
             addQuestionPublic(questionEditPublic);
         }else{
             setModal(true);
