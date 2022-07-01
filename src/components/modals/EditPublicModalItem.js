@@ -17,19 +17,19 @@ const EditPublicModalItem = ({publicQuizToList, modalState, closeModal, setAreYo
 
   const nav = useNavigate();
 
-  const {quizName, id, isPublished } = publicQuizToList;
+  const {quizName, _id, isPublished } = publicQuizToList;
 
   const quizSelectionAction = () => {
     switch(modalState.state) {
       case 'Quiz Stats':
         setSelectedQuizStats({selectedQuizName: quizName});
-        getViews(id);
+        getViews(_id);
         closeModal(false);
         setSeeStats(true);
         break;
       case 'Delete Quiz':
         setAreYouSure(true);
-        quizToDel({publicQuizToDeleteID: id});
+        quizToDel({publicQuizToDeleteID: _id});
         closeModal(false);
         break;
       case 'Edit Public Quizes':
@@ -40,8 +40,8 @@ const EditPublicModalItem = ({publicQuizToList, modalState, closeModal, setAreYo
         const addPrivate = addToPrivate[Object.keys(addToPrivate)[0]];
         addPrivate.isPublished = "Unpublished";
         addQuizToWip(addPrivate);
-        deletePublicQuiz(id);
-        deletePublicQuizFromPublicDatabase(id);
+        deletePublicQuiz(_id);
+        // deletePublicQuizFromPublicDatabase(id);
         closeModal(false);
         break;
       default:

@@ -48,18 +48,19 @@ const QuestionEditorMacroButtons = () => {
         const addPrivate = addToPrivate[Object.keys(addToPrivate)[0]];
         addPrivate.isPublished = "Published";
         addQuizPublic(addPrivate);
-        addPublicQuizToPublicDatabase(addPrivate);
+        // addPublicQuizToPublicDatabase(addPrivate);
         deleteWipQuiz(quizEdit._id);
         nav('../../Dashboard');
     };
 
     const saveQuiz = () => {
-        if(!quizEdit._id) {
+        if(!quizEdit._id && isQuizPublished.isPub === "Unpublished") {
             addQuizToWip(quizEdit);
         } else if(isQuizPublished.isPub === "Unpublished") {
             updatePrivateQuiz(quizEdit);
         }else if(isQuizPublished.isPub === "Published") {
             updatePublicQuizToPublicDatabase(quizEditPublic);
+            console.log(quizEditPublic)
             updatePublicQuiz(quizEditPublic);
         }
         nav('../../Dashboard');
@@ -77,6 +78,23 @@ const QuestionEditorMacroButtons = () => {
         return (
         <>
             { isQuizPublished.isPub === "Unpublished" ? 
+
+                <button className="quiz-editor-macros first-macro-button" onClick={saveQuiz}>
+                    {quizEdit !== undefined ? 
+                        <>
+                            {quizEdit._id ? `Update Quiz` : `Save Quiz`}
+                        </>
+                    :
+                        ''
+                    }
+                </button>
+            :
+                <button className="quiz-editor-macros first-macro-button grey-out">
+                    Update Quiz
+                </button>
+            }
+            
+            { isQuizPublished.isPub === "Unpublished" ? 
                 <button className="quiz-editor-macros middle-macro-button grey-out">Publish Quiz</button> 
             :
                 <button className="quiz-editor-macros middle-macro-button grey-out">Quiz Stats</button> 
@@ -90,6 +108,24 @@ const QuestionEditorMacroButtons = () => {
     const activeBtns = () => {
         return(
             <>
+                { isQuizPublished.isPub === "Unpublished" ? 
+                    <>
+                        <button className="quiz-editor-macros first-macro-button" onClick={saveQuiz}>
+                            {quizEdit !== undefined ? 
+                                <>
+                                    {quizEdit._id ? `Update Quiz` : `Save Quiz`}
+                                </>
+                            :
+                                ''
+                            }
+                        </button>
+                    </>
+                :
+                    <button className="quiz-editor-macros first-macro-button" onClick={saveQuiz}>
+                        Update Quiz
+                    </button>
+                }
+
                 { isQuizPublished.isPub === "Unpublished" ? 
                     <button className="quiz-editor-macros middle-macro-button" onClick={publish}>Publish Quiz</button> 
                 :
@@ -105,28 +141,28 @@ const QuestionEditorMacroButtons = () => {
 
   return (
         <Fragment>
-            <button className="quiz-editor-macros first-macro-button" onClick={saveQuiz}>
-                {quizEdit !== undefined ? 
-                    <>
-                        {quizEdit._id ? `Update Quiz` : `Save Quiz`}
-                    </>
-                :
-                    ''
-                }
-            </button> 
-            {quizEdit !== undefined ? 
-            <>{quizEdit.quizQuestions.length === 0 ? greyedOut() : activeBtns()}</>
+            {isQuizPublished.isPub === "Unpublished" ? 
+                <>
+                    {quizEdit !== undefined ? 
+                        <>{quizEdit.quizQuestions.length === 0 ? greyedOut() : activeBtns()}</>
+                    :
+                        ''
+                    }
+                </>
             :
-            ''
+                <>
+                    {quizEditPublic !== undefined ? 
+                        <>{quizEditPublic.quizQuestions.length === 0 ? greyedOut() : activeBtns()}</>
+                    :
+                        ''
+                    }
+                </>
             }
-
-
-
             { areYouSure.openModal && areYouSure.isNotPublished && 
                 <AreYouSure quizID={quizEdit._id} setAreYouSure={setAreYouSure} isPublished={isQuizPublished.isPub} />}
 
             { areYouSure.openModal && !areYouSure.isNotPublished && 
-                <AreYouSure quizToDeletePublic={quizEditPublic.id} setAreYouSure={setAreYouSure} isPublished={isQuizPublished.isPub} />}
+                <AreYouSure quizToDeletePublic={quizEditPublic._id} setAreYouSure={setAreYouSure} isPublished={isQuizPublished.isPub} />}
             {seeStatsModal && <SeeStatsModalPublicQuizEdit resetModal={setSeeStatsModal} views={quizEditPublic.views} quizName={quizEditPublic.quizName}/>}
         </Fragment>
   )

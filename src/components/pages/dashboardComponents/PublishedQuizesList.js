@@ -33,11 +33,11 @@ const PublishedQuizesList= ({ publicQuizes }) => {
             <div className="public-quizes-box">
                 <h2>Public Quizes</h2>
                 <div className="public-quizes">
-                    { quizPublicContext.filtered !== null ? filtered.map(PQuiz => (<PublishedQuizesListItem key={PQuiz.id} publicQuizToList={PQuiz} />))
+                    { quizPublicContext.filtered !== null ? filtered.map(PQuiz => (<PublishedQuizesListItem key={PQuiz._id} publicQuizToList={PQuiz} />))
                         : 
                     <>
                         { publicQuizes[0] !== undefined ? 
-                            publicQuizes.map(PQuiz => (<PublishedQuizesListItem key={PQuiz.id} publicQuizToList={PQuiz} />)) 
+                            publicQuizes.map(PQuiz => (<PublishedQuizesListItem key={PQuiz._id} publicQuizToList={PQuiz} />)) 
                         : 
                             <div className="quiz-element">Public Quizes Will Populate Here</div>
                         }

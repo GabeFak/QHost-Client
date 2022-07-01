@@ -36,8 +36,8 @@ const MainDashboard = ({publicQuizes}) => {
 
     const [topQuizModalState, setTopQuizModalState] = useState(false);
 
-    const getViews = (id) => {
-      let match = Object.assign( {}, allPublicQuizesContext.publicQuizes.filter(quiz => quiz.id === id));
+    const getViews = (_id) => {
+      let match = Object.assign( {}, allPublicQuizesContext.publicQuizes.filter(quiz => quiz._id === _id));
       let statsObj = match[Object.keys(match)[0]];
       setSelectedQuizStats({...selectedQuizStats, views: statsObj.views});
     };

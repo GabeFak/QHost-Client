@@ -11,11 +11,36 @@ import {
     UPDATE_PUBLIC_QUIZ,
     FILTER_PUBLIC_QUIZES,
     CLEAR_FILTER,
-    SET_TOP_QUIZ
+    SET_TOP_QUIZ,
+    QUIZPUB_ERROR,
+    GET_QUIZ_PUB,
+    CLEAR_QUIZ_PUB
 } from '../types';
 
 const Reducer = (state, action) => {
     switch(action.type) {
+        case GET_QUIZ_PUB:
+            return {
+                ...state,
+                publicQuizes: action.payload,
+                loadingPublic: false
+            };
+        case CLEAR_QUIZ_PUB:
+            return {
+                ...state,
+                loadingPublic: false,
+                error: null,
+                publicQuizes: [],
+                quizEditPublic: null,
+                quizNamesOrganizedByViews: null,
+                currentQuestionEditPublic: null,
+                filtered: null
+            };
+        case QUIZPUB_ERROR: 
+            return {
+                ...state,
+                error: action.payload  
+            }
         case FILL_IN_QUIZ_EDIT_PUBLIC:
             let newEditState = Object.assign( {}, state.publicQuizes.filter(quiz => quiz.quizName === action.payload));
 
@@ -73,10 +98,11 @@ const Reducer = (state, action) => {
         case ADD_PUBLIC_QUIZ:
             return {
                 ...state,
-                publicQuizes: [action.payload, ...state.publicQuizes]
+                publicQuizes: [action.payload, ...state.publicQuizes],
+                loading: false
             };
         case DELETE_QUIZ_PUBLIC:
-            let quizListMinusDeletedQuiz = state.publicQuizes.filter(quiz => quiz.id !== action.payload);
+            let quizListMinusDeletedQuiz = state.publicQuizes.filter(quiz => quiz._id !== action.payload);
 
             return {
                 ...state,

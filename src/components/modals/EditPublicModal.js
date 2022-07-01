@@ -11,7 +11,7 @@ const EditPublicModal = ({ closeModal, publicQuizes, modalState, setAreYouSure, 
           </div>
           <div className='modal-selection-option'>
             {publicQuizes.map(PQuiz => (
-              <EditPublicModalItem key={PQuiz.id} setAreYouSure={setAreYouSure} modalState={modalState} closeModal={closeModal} quizToDel={quizToDel} publicQuizToList={PQuiz} setSelectedQuizStats={setSelectedQuizStats} setSeeStats={setSeeStats} getViews={getViews}/>
+              <EditPublicModalItem key={PQuiz._id} setAreYouSure={setAreYouSure} modalState={modalState} closeModal={closeModal} quizToDel={quizToDel} publicQuizToList={PQuiz} setSelectedQuizStats={setSelectedQuizStats} setSeeStats={setSeeStats} getViews={getViews}/>
             ))}
             <button className="modal-button-grey" onClick={() => {closeModal(false)}}>Cancel</button>
           </div>

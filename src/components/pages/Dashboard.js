@@ -14,12 +14,13 @@ const Dashboard = () => {
     const { setLoggedIn, getQuizWips, loading } = quizWipContext;
 
     const quizPublicContext = useContext(QuizPublicContext);
-    const { publicQuizes } = quizPublicContext;
+    const { publicQuizes, getQuizPub  } = quizPublicContext;
     
     useEffect(() => { 
         loadUser();
         setLoggedIn();
         getQuizWips();
+        getQuizPub();
         //eslint-disable-next-line 
     }, []);
 

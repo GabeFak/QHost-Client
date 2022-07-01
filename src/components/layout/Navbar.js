@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import QuizWipContext from '../../context/QuizWip/QuizWipContext';
 import UserInfoContext from '../../context/UserInfo/UserInfoContext';
 import AuthContext from '../../context/Auth/AuthContext';
+import QuizPublicContext from '../../context/QuizPublic/QuizPublicContext';
 
 const Navbar = () => {
 const authContext = useContext(AuthContext);
@@ -15,9 +16,13 @@ const { UserInfo } = userInfoContext;
 const quizContext = useContext(QuizWipContext);
 const { loggedIn, clearQuizWIPS } = quizContext;
 
+const quizPublicContext = useContext(QuizPublicContext);
+const { clearQuizPub } = quizPublicContext;
+
 const onLogout = () => {
     logout();
     clearQuizWIPS();
+    clearQuizPub();
 }; 
 
 if(loading) {
