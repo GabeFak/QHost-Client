@@ -9,10 +9,10 @@ const PrivateRoute = ({ component: Component, ...rest}) => {
     if(!isAuthenticated && !loading) {
         return (
             <Navigate replace to='/login' />
-        )
+        );
     }else{
         return <Outlet />;
-    }
-}
+    };
+};
 
 export default PrivateRoute;

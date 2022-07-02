@@ -1,5 +1,4 @@
 import React, { useReducer } from 'react';
-import {v4 as uuid} from 'uuid';
 import quizWipContext from './QuizWipContext';
 import quizWipReducer from './QuizWipReducer';
 import axios from 'axios';
@@ -23,7 +22,6 @@ import {
     GET_QUIZ_WIPS,
     CLEAR_QUIZ_WIPS
 } from '../types';
-
 
 const QuizWipState = props => {
     const initialState = {
@@ -129,51 +127,61 @@ const QuizWipState = props => {
         setLoading();
         try {
             const res = await axios.get('/api/userData');
-
             dispatch({ type: GET_QUIZ_WIPS, payload: res.data });
         } catch (err) {
             dispatch({ type: QUIZWIP_ERROR, payload: err.response.msg });
         };
     };
+
     // CLEAR_QUIZ_WIPS
     const clearQuizWIPS = () => {
         dispatch({ type: CLEAR_QUIZ_WIPS })
-    }
-    // 
+    };
+
+    // FILL_IN_QUIZ_EDIT
     const fillInQuizEditState = urlParam => {
         setLoading();
-        dispatch({ type: FILL_IN_QUIZ_EDIT, payload: urlParam});
+        dispatch({ type: FILL_IN_QUIZ_EDIT, payload: urlParam });
     }
+
+    // SET_LOADING 
     const setLoading = () => dispatch({ type: SET_LOADING });
 
-    const setLoggedOff = () => dispatch({ type: SET_LOGGED_OFF});
+    // SET_LOGGED_OFF  
+    const setLoggedOff = () => dispatch({ type: SET_LOGGED_OFF });
 
+    // SET_LOGGED_IN 
     const setLoggedIn = () => dispatch({ type: SET_LOGGED_IN });
 
+    // CURRENT_QUESTION_EDIT
     const setCurrentQuestionEdit = questionName => {
-        dispatch({ type: CURRENT_QUESTION_EDIT, payload: questionName})
-    }
+        dispatch({ type: CURRENT_QUESTION_EDIT, payload: questionName });
+    };
 
+    // CLEAR_CURRENT_QUESTION_EDIT
     const clearCurrentQuestionEdit = () => {
-        dispatch({ type: CLEAR_CURRENT_QUESTION_EDIT});
-    }
+        dispatch({ type: CLEAR_CURRENT_QUESTION_EDIT });
+    };
 
+    // ADD_QUESTION
     const addQuestion = newQuestion => {
-        dispatch({ type: ADD_QUESTION, payload: newQuestion});
-    }
+        dispatch({ type: ADD_QUESTION, payload: newQuestion });
+    };
 
+    // UPDATE_QUESTION
     const updateQuestion = (currentQ, questionToUpdate) => {
         setLoading();
         let payloadNew = state.quizEdit; 
         payloadNew.quizQuestions.forEach((question, index) => {
-            if(question.title === currentQ){
+            if(question.title === currentQ) {
                 payloadNew.quizQuestions[index] = questionToUpdate;
-            }
+            };
         });
-        dispatch({ type: UPDATE_QUESTION, payload: payloadNew});
+        dispatch({ type: UPDATE_QUESTION, payload: payloadNew });
         clearCurrentQuestionEdit();
-    }
+    };
 
+    // DELETE_QUESTION
     const deleteQuestion = questionID => {
         setLoading();
         dispatch({ type: DELETE_QUESTION, payload: questionID});
@@ -181,31 +189,24 @@ const QuizWipState = props => {
 
     // This adds to the private list of quizes from the public list. To add a new quiz from the UI, fillInNewQuiz is called and then
     // updateQuizWIP is called which will add it to the database by default if it doesn't already exist there. 
+    // ADD_QUIZ
     const addQuizToWip = async question => {
-        // let id = uuid();
-        // console.log(id)
-
-        // Also add quiz to backend 
-
         setLoading();
         const config = {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }
-
+        };
         try {
             const res = await axios.post('/api/userData', question, config);
-
             dispatch({ type: ADD_QUIZ, payload: res.data });
         } catch (err) {
             dispatch({ type: QUIZWIP_ERROR, payload: err.response.msg });
         };
-        // dispatch({ type: ADD_QUIZ, payload: question });
     };
 
+    // DELETE_QUIZ_WIP
     const deleteWipQuiz = async currentQuizID => {
-
         try {
             await axios.delete(`/api/userData/${currentQuizID}`);
 
@@ -213,46 +214,40 @@ const QuizWipState = props => {
         } catch (err) {
             dispatch({ type: QUIZWIP_ERROR, payload: err.response.msg });
         };
+    };
 
-        // dispatch({ type: DELETE_QUIZ_WIP, payload: currentQuizID})
-    }
-
+    // UPDATE_PRIVATE_QUIZ
     const updatePrivateQuiz = async quizToUpdate => {
         setLoading();
         const config = {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }
-
+        };
         try {
             const res = await axios.put(`/api/userData/${quizToUpdate._id}`, quizToUpdate, config);
-
             dispatch({ type: UPDATE_PRIVATE_QUIZ, payload: res.data });
         } catch (err) {
             dispatch({ type: QUIZWIP_ERROR, payload: err.response.msg });
         };
-        // Add quiz to backend
-        // dispatch({ type: UPDATE_PRIVATE_QUIZ, payload: quizToUpdate})
-    }
+    };
 
+    // FILL_IN_NEW_QUIZ
     const fillInNewQuiz = userAndTitleInfo => {
-        // let newId = uuid();
-        // userAndTitleInfo.id = newId;
         setLoading();
         catchFillInNewQuizFinish();
-       
-        dispatch({ type: FILL_IN_NEW_QUIZ, payload: userAndTitleInfo});
-    }
+        dispatch({ type: FILL_IN_NEW_QUIZ, payload: userAndTitleInfo });
+    };
 
+    // CATCH_FILL_IN_NEW_QUIZ_FINISH
     const catchFillInNewQuizFinish = () => {
-        dispatch({ type: CATCH_FILL_IN_NEW_QUIZ_FINISH});
-    }
+        dispatch({ type: CATCH_FILL_IN_NEW_QUIZ_FINISH });
+    };
 
+    // CATCH_FILL_IN_NEW_QUIZ_FINISH_FALSE
     const catchFillInNewQuizFinishFalse = () => {
-        dispatch({ type: CATCH_FILL_IN_NEW_QUIZ_FINISH_FALSE});
-    }
-
+        dispatch({ type: CATCH_FILL_IN_NEW_QUIZ_FINISH_FALSE });
+    };
 
     return (
         <quizWipContext.Provider

@@ -1,11 +1,10 @@
 import React from 'react';
 import useGetQuizStats from '../hooks/useGetQuizStats';
 
-const SeeStatsModalPublicQuizEdit = ({quizName, views, resetModal}) => {
+const SeeStatsModalPublicQuizEdit = ({quizName, resetModal}) => {
     const [stats] = useGetQuizStats(quizName)
-    if(stats === undefined || stats.length === 0 || stats === null){
-        return ''
-        
+    if(stats === undefined || stats.length === 0 || stats === null) {
+        return '';
     } else {
         return (
             <div className='modal-background'>

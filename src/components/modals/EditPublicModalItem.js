@@ -3,12 +3,8 @@ import { useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import QuizPublicContext from '../../context/QuizPublic/QuizPublicContext';
 import QuizWipContext from '../../context/QuizWip/QuizWipContext';
-import AllPublicQuizesContext from '../../context/AllPublicQuizes/AllPublicQuizesContext';
 
 const EditPublicModalItem = ({publicQuizToList, modalState, closeModal, setAreYouSure, quizToDel, setSeeStats, setSelectedQuizStats}) => {
-  const allPublicQuizesContext = useContext(AllPublicQuizesContext);
-  const { deletePublicQuizFromPublicDatabase } = allPublicQuizesContext;
-
   const quizPublicContext = useContext(QuizPublicContext);
   const { deletePublicQuiz, publicQuizes} = quizPublicContext;
 

@@ -3,8 +3,6 @@ import {v4 as uuid} from 'uuid';
 import quizPublicContext from './QuizPublicContext';
 import quizPublicReducer from './QuizPublicReducer';
 import axios from 'axios';
-// import { useContext } from 'react';
-// import AuthContext from '../Auth/AuthContext';
 import {
     FILL_IN_QUIZ_EDIT_PUBLIC,
     SET_LOADING_PUBLIC,
@@ -22,12 +20,7 @@ import {
     QUIZPUB_ERROR,
     GET_QUIZ_PUB,
     CLEAR_QUIZ_PUB,
-    // ADD_TO_PUBLIC, 
-    // GET_FROM_PUBLIC,
-    // DELETE_FROM_PUBLIC,
-    // UPDATE_PUBLIC
-    GET_FROM_PUBLIC_TO_CALC,
-    FILTER_QUIZ_OWNER_BY_NAME
+    GET_FROM_PUBLIC_TO_CALC
 } from '../types';
 
 
@@ -98,7 +91,6 @@ const QuizPublicState = props => {
             postId: ''
         },
         error: null,
-        // quizNamesOrganizedByViews: null,
         currentQuestionEditPublic: null,
         filtered: null,
         allPublicQuizesToCalc: []
@@ -107,71 +99,64 @@ const QuizPublicState = props => {
     const [state, dispatch] = useReducer(quizPublicReducer, initialState);
 
     //Actions go here.
-    // GET_QUIZ_PUB
-    // const authContext = useContext(AuthContext);
-    // const { user } = authContext;
-
     const getQuizPub = async () => {
         setLoading();
         try {
             const res = await axios.get('/api/quizes');
-
             dispatch({ type: GET_QUIZ_PUB, payload: res.data });
         } catch (err) {
             dispatch({ type: QUIZPUB_ERROR, payload: err.response.msg });
         };
     };
+
     // CLEAR_QUIZ_PUB
     const clearQuizPub = () => {
-        dispatch({ type: CLEAR_QUIZ_PUB })
-    }
+        dispatch({ type: CLEAR_QUIZ_PUB });
+    };
 
     const fillInQuizEditStatePublic = urlParam => {
         setLoading();
-        dispatch({ type: FILL_IN_QUIZ_EDIT_PUBLIC, payload: urlParam});
+        dispatch({ type: FILL_IN_QUIZ_EDIT_PUBLIC, payload: urlParam });
     };
 
     const setLoading = () => dispatch({ type: SET_LOADING_PUBLIC });
 
-    const clearCurrentQuestionEditPublic = () => dispatch({ type: CLEAR_CURRENT_PUBLIC_Q_EDIT});
+    const clearCurrentQuestionEditPublic = () => dispatch({ type: CLEAR_CURRENT_PUBLIC_Q_EDIT });
 
     const setCurrentQuestionEditPublic = questionName => {
-        dispatch({ type: CURRENT_PUBLIC_Q_EDIT, payload: questionName})
+        dispatch({ type: CURRENT_PUBLIC_Q_EDIT, payload: questionName });
     };
 
     const updateQuestionPublic = (currentQ, questionToUpdate) => {
         setLoading();
         let payloadNew = state.quizEditPublic; 
-
         payloadNew.quizQuestions.forEach((question, index) => {
             if(question.title === currentQ) {
                 payloadNew.quizQuestions[index] = questionToUpdate;
             };
         });
-
-        dispatch({ type: UPDATE_QUESTION_PUBLIC, payload: payloadNew});
+        dispatch({ type: UPDATE_QUESTION_PUBLIC, payload: payloadNew });
         clearCurrentQuestionEditPublic();
     };
 
     const deleteQuestionPublic = questionTitle => {
         setLoading();
-        dispatch({ type: DELETE_QUESTION_PUBLIC, payload: questionTitle});
+        dispatch({ type: DELETE_QUESTION_PUBLIC, payload: questionTitle });
     };
 
     const addQuestionPublic = newQuestion => {
         setLoading();
-        dispatch({ type: ADD_QUESTION_PUBLIC, payload: newQuestion});
+        dispatch({ type: ADD_QUESTION_PUBLIC, payload: newQuestion });
     };
 
     const addQuizPublic = async newPublicQuiz => {
-        // console.log(newPublicQuiz)
         setLoading();
         newPublicQuiz.postId = newPublicQuiz._id
         const config = {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }
+        };
 
         try {
             const res = await axios.post('/api/quizes', newPublicQuiz, config);
@@ -183,12 +168,9 @@ const QuizPublicState = props => {
 
         try {
            await axios.post('/api/public', newPublicQuiz, config);
-            console.log('add to public ')
-            // dispatch({ type: ADD_PUBLIC_QUIZ, payload: res.data });
         } catch (err) {
             dispatch({ type: QUIZPUB_ERROR, payload: err.response.msg });
         };
-        // dispatch({ type: ADD_PUBLIC_QUIZ, payload: newPublicQuiz });
     };
 
     const deletePublicQuiz = async (currentQuizID, postId) => {
@@ -201,7 +183,6 @@ const QuizPublicState = props => {
         try {
             console.log(postId)
             await axios.delete(`/api/public/${postId}`);
-            // dispatch({ type:  DELETE_QUIZ_PUBLIC, payload: currentQuizID });
         } catch (err) {
             dispatch({ type: QUIZPUB_ERROR, payload: err.response.msg });
         };
@@ -209,12 +190,11 @@ const QuizPublicState = props => {
 
     const updatePublicQuiz = async quizToUpdate => {
         setLoading();
-        console.log(quizToUpdate)
         const config = {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }
+        };
 
         try {
             const res = await axios.put(`/api/quizes/${quizToUpdate._id}`, quizToUpdate, config);
@@ -232,15 +212,15 @@ const QuizPublicState = props => {
 
     //filter public quizes search
     const filterPublicQuizes = input => {
-        dispatch({ type: FILTER_PUBLIC_QUIZES, payload: input})
+        dispatch({ type: FILTER_PUBLIC_QUIZES, payload: input });
     };
 
     const clearFilter = () => {
-        dispatch({ type: CLEAR_FILTER})
+        dispatch({ type: CLEAR_FILTER });
     };
 
     const setTopQuizes = (quizInfo) => {
-        dispatch({ type: SET_TOP_QUIZ, payload: quizInfo})
+        dispatch({ type: SET_TOP_QUIZ, payload: quizInfo });
     };
 
     const getAllPublicQuizesToCalc = async () => {
@@ -251,38 +231,7 @@ const QuizPublicState = props => {
         } catch (err) {
             dispatch({ type: QUIZPUB_ERROR, payload: err.response.msg });
         };
-        // filterByName(user.name);
-    }
-    // const filterByName = (userName) => {
-    //     dispatch({ type: FILTER_QUIZ_OWNER_BY_NAME, payload: userName })
-    // }
-
-    //SetState will set the state from the currently selected quiz wip to edit
-    //if id = null (the user pressed new quiz) then create id and blank template.
-    ///////////////////////
-    /////////////////////
-    ////////////////////
-    //////////////////////
-    // Public Public stuff
-
-    // // ADD_TO_PUBLIC
-    // const addToPublic = async addToPublicAccess => {
-    //     console.log(addToPublicAccess)
-    //     setLoading();
-    //     const config = {
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         }
-    //     }
-
-    //     try {
-    //         const res = await axios.post('/api/public', addToPublicAccess, config);
-
-    //         dispatch({ type: ADD_PUBLIC_QUIZ, payload: res.data });
-    //     } catch (err) {
-    //         dispatch({ type: QUIZPUB_ERROR, payload: err.response.msg });
-    //     };
-    // }
+    };
 
 
 

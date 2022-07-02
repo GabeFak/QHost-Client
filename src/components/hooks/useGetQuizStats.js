@@ -23,9 +23,6 @@ export default function useGetQuizStats(quizNameToCalc) {
         });
         
         let stats = quizesToCalc.filter(quizes => quizes.quizName === quizNameToCalc);
-        
-        // return [stats[0].quizName, stats[0].views];
         return stats;
-        
-    }
-}
+    };
+};

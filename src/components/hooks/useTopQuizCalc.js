@@ -15,12 +15,12 @@ export default function useTopQuizCalc() {
         getAllPublicQuizesToCalc();
     }, []);
 
-    if(allPublicQuizesToCalc !== null || allPublicQuizesToCalc !== []){
+    if(allPublicQuizesToCalc !== null || allPublicQuizesToCalc !== []) {
         quizesToCalc = allPublicQuizesToCalc.filter(quizes => {
-            if(quizes.userName === user.name){
+            if(quizes.userName === user.name) {
                 return quizes;
             }
-        })
+        });
 
         let quizesToBeArangedByViews = quizesToCalc;
 
@@ -33,7 +33,7 @@ export default function useTopQuizCalc() {
                 quizNames[index] = quiz.quizName;
             });
 
-            for(let i = 0; i < quizViews.length; i++){
+            for(let i = 0; i < quizViews.length; i++) {
                     quizPopularityStats[i] = [quizViews[i], quizNames[i]];
             };
 
@@ -46,7 +46,6 @@ export default function useTopQuizCalc() {
                     
                 };
             });
-            return quizPopularityStats;
-            
-    }
-}
+            return quizPopularityStats;     
+    };
+};

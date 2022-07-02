@@ -3,7 +3,7 @@ import useTopQuizCalc from '../hooks/useTopQuizCalc';
 
 const YourTopQuizModal = ({ closeModal }) => {
     const [calc] = useTopQuizCalc();
-    if(calc === undefined || calc.length === 0 || calc === null){
+    if(calc === undefined || calc.length === 0 || calc === null) {
         return ''
     }else {
         return (

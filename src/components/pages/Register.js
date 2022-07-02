@@ -27,7 +27,6 @@ const Register = () => {
 
     const onChange = e => setUser({ ...user, [e.target.name]: e.target.value });
     
-    
     const onSubmit = (e) => {
         e.preventDefault();
         if(name === '' || email === '' || password === '') {
@@ -41,7 +40,7 @@ const Register = () => {
                 password
             });
         };
-    }
+    };
 
     const nav = useNavigate();
     useEffect(() => { 

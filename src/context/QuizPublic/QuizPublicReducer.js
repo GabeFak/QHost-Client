@@ -11,26 +11,22 @@ import {
     UPDATE_PUBLIC_QUIZ,
     FILTER_PUBLIC_QUIZES,
     CLEAR_FILTER,
-    SET_TOP_QUIZ,
     QUIZPUB_ERROR,
     GET_QUIZ_PUB,
     CLEAR_QUIZ_PUB,
-    ADD_TO_PUBLIC, 
-    GET_FROM_PUBLIC,
-    DELETE_FROM_PUBLIC,
-    UPDATE_PUBLIC,
-    GET_FROM_PUBLIC_TO_CALC,
-    FILTER_QUIZ_OWNER_BY_NAME
+    GET_FROM_PUBLIC_TO_CALC
 } from '../types';
 
 const Reducer = (state, action) => {
     switch(action.type) {
+
         case GET_QUIZ_PUB:
             return {
                 ...state,
                 publicQuizes: action.payload,
                 loadingPublic: false
             };
+
         case CLEAR_QUIZ_PUB:
             return {
                 ...state,
@@ -42,87 +38,89 @@ const Reducer = (state, action) => {
                 currentQuestionEditPublic: null,
                 filtered: null
             };
+
         case QUIZPUB_ERROR: 
             return {
                 ...state,
                 error: action.payload  
             }
+
         case FILL_IN_QUIZ_EDIT_PUBLIC:
             let newEditState = Object.assign( {}, state.publicQuizes.filter(quiz => quiz.quizName === action.payload));
-
             let editState = newEditState[Object.keys(newEditState)[0]];
-
             return {
                 ...state,
                 quizEditPublic: editState,
                 loadingPublic: false
             };
+
         case SET_LOADING_PUBLIC:
             return {
                 ...state,
                 loadingPublic: true
             };
+
         case CLEAR_CURRENT_PUBLIC_Q_EDIT:
             return {
                 ...state,
                 currentQuestionEditPublic: null
             };
+
         case CURRENT_PUBLIC_Q_EDIT:
             return {
                 ...state,
                 currentQuestionEditPublic: action.payload
             };
+
         case UPDATE_QUESTION_PUBLIC:
             return {
                 ...state,
                 quizEditPublic: action.payload,
                 loadingPublic: false
             };
+
         case DELETE_QUESTION_PUBLIC:
             let qToDelete = state.quizEditPublic;
-
             let toDelete = qToDelete.quizQuestions.filter(question => question.title !== action.payload);
-
             qToDelete.quizQuestions = toDelete;
-
             return {
                 ...state,
                 quizEditPublic: qToDelete,
                 currentQuestionEditPublic: null,
                 loadingPublic: false
             };
+
         case ADD_QUESTION_PUBLIC:
             let newQ = state.quizEditPublic;
-
             newQ.quizQuestions.push(action.payload);
-
             return {
                 ...state,
                 quizEditPublic: newQ,
                 loadingPublic: false
             };
+
         case ADD_PUBLIC_QUIZ:
             return {
                 ...state,
                 publicQuizes: [action.payload, ...state.publicQuizes],
                 loading: false
             };
+
         case DELETE_QUIZ_PUBLIC:
             let quizListMinusDeletedQuiz = state.publicQuizes.filter(quiz => quiz._id !== action.payload);
-
             return {
                 ...state,
                 publicQuizes: quizListMinusDeletedQuiz 
             };
+
         case UPDATE_PUBLIC_QUIZ:
             let publicQuizToUpdate = state.publicQuizes.filter(quiz => quiz.id !== action.payload.id);
-
             publicQuizToUpdate.push(action.payload);
-
             return {
                 ...state,
                 publicQuizes: publicQuizToUpdate
             };
+
         case FILTER_PUBLIC_QUIZES:
             return {
                 ...state,
@@ -131,55 +129,18 @@ const Reducer = (state, action) => {
                     return quiz.quizName.match(regex) || quiz.userName.match(regex);
                 })
             };
+
         case CLEAR_FILTER:
             return {
                 ...state,
                 filtered: null
             };
-        // case SET_TOP_QUIZ:
-        //     let quizesToBeArangedByViews = state.publicQuizes;
 
-        //     let quizPopularityStats = [];
-        //     let quizViews = [];
-        //     let quizNames = [];
-        
-            // quizesToBeArangedByViews.forEach((quiz, index) => {
-            //     quizViews[index] = quiz.views;
-            //     quizNames[index] = quiz.quizName;
-            // });
-
-            // for(let i = 0; i < quizViews.length; i++){
-            //         quizPopularityStats[i] = [quizViews[i], quizNames[i]];
-            // };
-
-            // let c = 0;
-            // quizPopularityStats.sort((a, b) => {
-            //     if (a[c] === b[c]) {
-            //         return 0;
-            //     }else {
-            //         return (a[c] < b[c]) ? 1 : -1;
-            //     };
-            // });
-
-            // return {
-            //     ...state,
-            //     quizNamesOrganizedByViews: quizPopularityStats
-            // };
-            // PUBLIC PUBLIC STARTS HERE
         case GET_FROM_PUBLIC_TO_CALC:
             return {
                 ...state,
                 allPublicQuizesToCalc: action.payload
-            }
-        // case FILTER_QUIZ_OWNER_BY_NAME:
-        //     return {
-        //         ...state,
-        //         allPublicQuizesToCalc: state.allPublicQuizesToCalc.filter(quizes => {
-        //             if(quizes.userName === action.payload){
-        //                 return quizes;
-        //             }
-        //         })
-        //     }
+            };
         default:
             return state;
     };
