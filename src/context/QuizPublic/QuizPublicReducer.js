@@ -63,7 +63,8 @@ const Reducer = (state, action) => {
         case CLEAR_CURRENT_PUBLIC_Q_EDIT:
             return {
                 ...state,
-                currentQuestionEditPublic: null
+                currentQuestionEditPublic: null,
+                loadingPublic: false
             };
 
         case CURRENT_PUBLIC_Q_EDIT:
@@ -103,7 +104,7 @@ const Reducer = (state, action) => {
             return {
                 ...state,
                 publicQuizes: [action.payload, ...state.publicQuizes],
-                loading: false
+                loadingPublic: false
             };
 
         case DELETE_QUIZ_PUBLIC:
@@ -114,11 +115,13 @@ const Reducer = (state, action) => {
             };
 
         case UPDATE_PUBLIC_QUIZ:
-            let publicQuizToUpdate = state.publicQuizes.filter(quiz => quiz.id !== action.payload.id);
+            let publicQuizToUpdate = state.publicQuizes.filter(quiz => quiz._id !== action.payload._id);
             publicQuizToUpdate.push(action.payload);
+            console.log(publicQuizToUpdate)
             return {
                 ...state,
-                publicQuizes: publicQuizToUpdate
+                publicQuizes: publicQuizToUpdate,
+                loadingPublic: false
             };
 
         case FILTER_PUBLIC_QUIZES:

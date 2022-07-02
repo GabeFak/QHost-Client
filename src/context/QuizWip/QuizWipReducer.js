@@ -16,7 +16,8 @@ import {
     CATCH_FILL_IN_NEW_QUIZ_FINISH_FALSE,
     QUIZWIP_ERROR,
     GET_QUIZ_WIPS,
-    CLEAR_QUIZ_WIPS
+    CLEAR_QUIZ_WIPS,
+    ALL_QUIZ_NAMES
 } from '../types';
 
 const Reducer = (state, action) => {
@@ -174,6 +175,11 @@ const Reducer = (state, action) => {
               error: action.payload  
             };
             
+        case ALL_QUIZ_NAMES: 
+        return {
+            ...state,
+            allQuizNamesPubAndWip: action.payload
+        }
         default:
             return state;
     };

@@ -5,7 +5,7 @@ import QuizPublicContext from '../../../context/QuizPublic/QuizPublicContext';
 
 const PublishedQuizesList= ({ publicQuizes }) => {
     const quizPublicContext = useContext(QuizPublicContext);
-    const {filtered} = quizPublicContext;
+    const {filtered, loadingPublic} = quizPublicContext;
 
     const text = useRef('');
 
@@ -24,7 +24,9 @@ const PublishedQuizesList= ({ publicQuizes }) => {
             quizPublicContext.clearFilter();
         };
     };
-
+    if(loadingPublic) {
+        return ''
+    } else {
     return (
         <Fragment>
             <div className="dashboard-search">
@@ -46,6 +48,7 @@ const PublishedQuizesList= ({ publicQuizes }) => {
             </div>
         </Fragment>
     )
+                    }
 };
 
 export default PublishedQuizesList;

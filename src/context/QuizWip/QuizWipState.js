@@ -20,13 +20,15 @@ import {
     CATCH_FILL_IN_NEW_QUIZ_FINISH_FALSE,
     QUIZWIP_ERROR,
     GET_QUIZ_WIPS,
-    CLEAR_QUIZ_WIPS
+    CLEAR_QUIZ_WIPS,
+    ALL_QUIZ_NAMES 
 } from '../types';
 
 const QuizWipState = props => {
     const initialState = {
         loading: false,
         error: null,
+        allQuizNamesPubAndWip: null,
         quizes: [
             // {
             //     id: 'test id 1',
@@ -249,6 +251,11 @@ const QuizWipState = props => {
         dispatch({ type: CATCH_FILL_IN_NEW_QUIZ_FINISH_FALSE });
     };
 
+    // ALL_QUIZ_NAMES 
+    const setAllQuizNames = (quizNameArray) => {
+        dispatch({ type: ALL_QUIZ_NAMES, payload: quizNameArray });
+    };
+
     return (
         <quizWipContext.Provider
         value={{
@@ -260,6 +267,8 @@ const QuizWipState = props => {
             loggedIn: state.loggedIn,
             newQuizFill: state.newQuizFill,
             FillInNewQuizFinish: state.FillInNewQuizFinish,
+            allQuizNamesPubAndWip: state.allQuizNamesPubAndWip,
+            setAllQuizNames,
             getQuizWips,
             clearQuizWIPS,
             setCurrentQuestionEdit,

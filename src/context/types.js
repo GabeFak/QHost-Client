@@ -22,6 +22,8 @@ export const QUIZWIP_ERROR = "QUIZWIP_ERROR";
 
 export const GET_QUIZ_WIPS = "GET_QUIZ_WIPS";
 export const CLEAR_QUIZ_WIPS = "CLEAR_QUIZ_WIPS";
+
+export const ALL_QUIZ_NAMES = "ALL_QUIZ_NAMES";
 // For QuizPublicContext
 export const FILL_IN_QUIZ_EDIT_PUBLIC = "FILL_IN_QUIZ_EDIT_PUBLIC";
 export const SET_LOADING_PUBLIC = "SET_LOADING_PUBLIC";
