@@ -5,7 +5,7 @@ import QuizPublicContext from '../../context/QuizPublic/QuizPublicContext';
 import QuizWipContext from '../../context/QuizWip/QuizWipContext';
 import AllPublicQuizesContext from '../../context/AllPublicQuizes/AllPublicQuizesContext';
 
-const EditPublicModalItem = ({publicQuizToList, modalState, closeModal, setAreYouSure, quizToDel, setSeeStats, setSelectedQuizStats, getViews}) => {
+const EditPublicModalItem = ({publicQuizToList, modalState, closeModal, setAreYouSure, quizToDel, setSeeStats, setSelectedQuizStats}) => {
   const allPublicQuizesContext = useContext(AllPublicQuizesContext);
   const { deletePublicQuizFromPublicDatabase } = allPublicQuizesContext;
 
@@ -15,15 +15,14 @@ const EditPublicModalItem = ({publicQuizToList, modalState, closeModal, setAreYo
   const quizWipContext = useContext(QuizWipContext);
   const { addQuizToWip } = quizWipContext;
 
-  const nav = useNavigate();
-
+  const nav = useNavigate(); 
+  
   const {quizName, _id, isPublished, postId } = publicQuizToList;
 
   const quizSelectionAction = () => {
     switch(modalState.state) {
       case 'Quiz Stats':
         setSelectedQuizStats({selectedQuizName: quizName});
-        getViews(_id);
         closeModal(false);
         setSeeStats(true);
         break;
@@ -44,7 +43,6 @@ const EditPublicModalItem = ({publicQuizToList, modalState, closeModal, setAreYo
         addPrivate.isPublished = "Unpublished";
         addQuizToWip(addPrivate);
         deletePublicQuiz(_id, postId);
-        // deletePublicQuizFromPublicDatabase(id);
         closeModal(false);
         break;
       default:

@@ -56,6 +56,10 @@ const Register = () => {
             setAlert(error, 'danger');
             clearErrors();
         };
+        if(error === 'User name is taken') {
+            setAlert(error, 'danger');
+            clearErrors();
+        };
             //eslint-disable-next-line
     }, [error, isAuthenticated]);
 

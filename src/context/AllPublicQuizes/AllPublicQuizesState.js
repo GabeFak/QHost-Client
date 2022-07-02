@@ -179,6 +179,14 @@ const AllPublicQuizesState = props => {
     const setLoadingPublic = () => {
         dispatch({ type: SET_LOADING_PUBLIC_ACCESS });
     }
+    const patchViews = async postId => {
+        setLoadingPublic();
+        try {
+            await axios.patch(`/api/public/${postId}`);
+        } catch (err) {
+            dispatch({ type: QUIZPUB_ERROR, payload: err.response.msg });
+        };
+    }
     
 
     return (
@@ -189,6 +197,7 @@ const AllPublicQuizesState = props => {
                 currentActiveQuiz: state.currentActiveQuiz,
                 loadingPublicAccessQuizes: state.loadingPublicAccessQuizes,
                 error: state.error,
+                patchViews,
                 getFromPublic,
                 filterALLPublicQuizes,
                 clearAllPublicQuizesFilter,

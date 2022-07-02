@@ -9,7 +9,7 @@ const ActiveQuiz = () => {
     const nav = useNavigate();
 
     const allPublicQuizesContext = useContext(AllPublicQuizesContext);
-    const {currentActiveQuiz, addToViews} = allPublicQuizesContext;
+    const {currentActiveQuiz, addToViews, patchViews} = allPublicQuizesContext;
 
     const authContext = useContext(AuthContext);
     const { logout, isAuthenticated } = authContext;
@@ -59,7 +59,8 @@ const ActiveQuiz = () => {
     }, [isAuthenticated]);
     
     const start = () => {
-        addToViews(currentActiveQuiz.id);
+        // addToViews(currentActiveQuiz.id);
+        patchViews(currentActiveQuiz.postId)
         currentIndex = 0;
         if(startQuizControl) {
             setStartQuizControl(false);

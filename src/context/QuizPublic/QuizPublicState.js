@@ -3,6 +3,8 @@ import {v4 as uuid} from 'uuid';
 import quizPublicContext from './QuizPublicContext';
 import quizPublicReducer from './QuizPublicReducer';
 import axios from 'axios';
+// import { useContext } from 'react';
+// import AuthContext from '../Auth/AuthContext';
 import {
     FILL_IN_QUIZ_EDIT_PUBLIC,
     SET_LOADING_PUBLIC,
@@ -20,10 +22,12 @@ import {
     QUIZPUB_ERROR,
     GET_QUIZ_PUB,
     CLEAR_QUIZ_PUB,
-    ADD_TO_PUBLIC, 
-    GET_FROM_PUBLIC,
-    DELETE_FROM_PUBLIC,
-    UPDATE_PUBLIC
+    // ADD_TO_PUBLIC, 
+    // GET_FROM_PUBLIC,
+    // DELETE_FROM_PUBLIC,
+    // UPDATE_PUBLIC
+    GET_FROM_PUBLIC_TO_CALC,
+    FILTER_QUIZ_OWNER_BY_NAME
 } from '../types';
 
 
@@ -94,15 +98,19 @@ const QuizPublicState = props => {
             postId: ''
         },
         error: null,
-        quizNamesOrganizedByViews: null,
+        // quizNamesOrganizedByViews: null,
         currentQuestionEditPublic: null,
-        filtered: null
+        filtered: null,
+        allPublicQuizesToCalc: []
     };
 
     const [state, dispatch] = useReducer(quizPublicReducer, initialState);
 
     //Actions go here.
     // GET_QUIZ_PUB
+    // const authContext = useContext(AuthContext);
+    // const { user } = authContext;
+
     const getQuizPub = async () => {
         setLoading();
         try {
@@ -210,8 +218,13 @@ const QuizPublicState = props => {
 
         try {
             const res = await axios.put(`/api/quizes/${quizToUpdate._id}`, quizToUpdate, config);
-
             dispatch({ type: UPDATE_PUBLIC_QUIZ, payload: res.data });
+        } catch (err) {
+            dispatch({ type: QUIZPUB_ERROR, payload: err.response.msg });
+        };
+
+        try {
+            await axios.put(`/api/public/${quizToUpdate.postId}`, quizToUpdate, config);
         } catch (err) {
             dispatch({ type: QUIZPUB_ERROR, payload: err.response.msg });
         };
@@ -226,9 +239,24 @@ const QuizPublicState = props => {
         dispatch({ type: CLEAR_FILTER})
     };
 
-    const setTopQuizes = () => {
-        dispatch({ type: SET_TOP_QUIZ })
+    const setTopQuizes = (quizInfo) => {
+        dispatch({ type: SET_TOP_QUIZ, payload: quizInfo})
     };
+
+    const getAllPublicQuizesToCalc = async () => {
+        try {
+            const res = await axios.get('/api/public');
+
+            dispatch({ type: GET_FROM_PUBLIC_TO_CALC, payload: res.data });
+        } catch (err) {
+            dispatch({ type: QUIZPUB_ERROR, payload: err.response.msg });
+        };
+        // filterByName(user.name);
+    }
+    // const filterByName = (userName) => {
+    //     dispatch({ type: FILTER_QUIZ_OWNER_BY_NAME, payload: userName })
+    // }
+
     //SetState will set the state from the currently selected quiz wip to edit
     //if id = null (the user pressed new quiz) then create id and blank template.
     ///////////////////////
@@ -268,6 +296,8 @@ const QuizPublicState = props => {
                 currentQuestionEditPublic: state.currentQuestionEditPublic,
                 filtered: state.filtered,
                 error: state.error,
+                allPublicQuizesToCalc: state.allPublicQuizesToCalc,
+                getAllPublicQuizesToCalc,
                 getQuizPub,
                 clearQuizPub,
                 setLoading,

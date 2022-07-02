@@ -8,11 +8,8 @@ import YourTopQuizModal from '../../modals/YourTopQuizModal';
 import NewQuizModal from '../../modals/NewQuizModal';
 import AreYouSure from '../../modals/AreYouSure';
 import SeeStats from '../../modals/SeeStats';
-import AllPublicQuizesContext from '../../../context/AllPublicQuizes/AllPublicQuizesContext';
 
 const MainDashboard = ({publicQuizes}) => {
-    const allPublicQuizesContext = useContext(AllPublicQuizesContext);
-
     const [modal, setModal] = useState(false);
 
     const [modalState, setModalState] = useState({
@@ -30,18 +27,9 @@ const MainDashboard = ({publicQuizes}) => {
 
     const [seeStats, setSeeStats] = useState(false);
 
-    const [selectedQuizStats, setSelectedQuizStats] = useState({
-      selectedQuizName: null,
-      views: null
-    });
+    const [selectedQuizStats, setSelectedQuizStats] = useState({ selectedQuizName: null });
 
     const [topQuizModalState, setTopQuizModalState] = useState(false);
-
-    const getViews = (_id) => {
-      let match = Object.assign( {}, allPublicQuizesContext.publicQuizes.filter(quiz => quiz._id === _id));
-      let statsObj = match[Object.keys(match)[0]];
-      setSelectedQuizStats({...selectedQuizStats, views: statsObj.views});
-    };
 
     return (
         <Fragment>
@@ -56,7 +44,7 @@ const MainDashboard = ({publicQuizes}) => {
                 <MostViewedQuiz openModal={setTopQuizModalState}/>
                 <WipSelect />
             </div>
-                { modal && <EditPublicModal quizToDel={setSelectPublicQuizToDelete} setAreYouSure={setAreYouSure} modalState={modalState} closeModal={setModal} publicQuizes={publicQuizes} setSeeStats={setSeeStats} setSelectedQuizStats={setSelectedQuizStats} getViews={getViews}/>}
+                { modal && <EditPublicModal quizToDel={setSelectPublicQuizToDelete} setAreYouSure={setAreYouSure} modalState={modalState} closeModal={setModal} publicQuizes={publicQuizes} setSeeStats={setSeeStats} setSelectedQuizStats={setSelectedQuizStats}/>}
                 { areYouSure && <AreYouSure postId={selectedPublicQuizToDelete.publicQuizToDeletePostId} quizToDeletePublic={selectedPublicQuizToDelete.publicQuizToDeleteID} setAreYouSure={setAreYouSure} />}
                 { seeStats && <SeeStats selectedQuizStats={selectedQuizStats} resetModal={setSeeStats}/>}
                 { newQuizModal && <NewQuizModal closeModal={setNewQuizModal} />}

@@ -1,14 +1,15 @@
 import React from 'react';
 import { useContext } from 'react';
 import QuizPublicContext from '../../../context/QuizPublic/QuizPublicContext';
+import useTopQuizCalc from '../../hooks/useTopQuizCalc';
 
 const MostViewedQuiz = ({ openModal }) => {
     const quizPublicContext = useContext(QuizPublicContext);
-    const { setTopQuizes } = quizPublicContext;
-
+    const { setTopQuizes, quizNamesOrganizedByViews } = quizPublicContext;
+    // useTopQuizCalc();
     const onClick = () => {
         openModal(true);
-        setTopQuizes();
+        // setTopQuizes();    
     }; 
 
     return (

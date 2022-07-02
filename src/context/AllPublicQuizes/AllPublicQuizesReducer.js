@@ -87,7 +87,8 @@ const Reducer = (state, action) => {
     case QUIZPUB_ERROR:
         return {
             ...state,
-            error: action.payload  
+            error: action.payload,
+            loadingPublicAccessQuizes: false  
         }
         default:
             return state;

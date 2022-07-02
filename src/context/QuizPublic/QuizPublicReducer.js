@@ -18,7 +18,9 @@ import {
     ADD_TO_PUBLIC, 
     GET_FROM_PUBLIC,
     DELETE_FROM_PUBLIC,
-    UPDATE_PUBLIC
+    UPDATE_PUBLIC,
+    GET_FROM_PUBLIC_TO_CALC,
+    FILTER_QUIZ_OWNER_BY_NAME
 } from '../types';
 
 const Reducer = (state, action) => {
@@ -134,41 +136,50 @@ const Reducer = (state, action) => {
                 ...state,
                 filtered: null
             };
-        case SET_TOP_QUIZ:
-            let quizesToBeArangedByViews = state.publicQuizes;
+        // case SET_TOP_QUIZ:
+        //     let quizesToBeArangedByViews = state.publicQuizes;
 
-            let quizPopularityStats = [];
-            let quizViews = [];
-            let quizNames = [];
+        //     let quizPopularityStats = [];
+        //     let quizViews = [];
+        //     let quizNames = [];
         
-            quizesToBeArangedByViews.forEach((quiz, index) => {
-                quizViews[index] = quiz.views;
-                quizNames[index] = quiz.quizName;
-            });
+            // quizesToBeArangedByViews.forEach((quiz, index) => {
+            //     quizViews[index] = quiz.views;
+            //     quizNames[index] = quiz.quizName;
+            // });
 
-            for(let i = 0; i < quizViews.length; i++){
-                    quizPopularityStats[i] = [quizViews[i], quizNames[i]];
-            };
+            // for(let i = 0; i < quizViews.length; i++){
+            //         quizPopularityStats[i] = [quizViews[i], quizNames[i]];
+            // };
 
-            let c = 0;
-            quizPopularityStats.sort((a, b) => {
-                if (a[c] === b[c]) {
-                    return 0;
-                }else {
-                    return (a[c] < b[c]) ? 1 : -1;
-                };
-            });
+            // let c = 0;
+            // quizPopularityStats.sort((a, b) => {
+            //     if (a[c] === b[c]) {
+            //         return 0;
+            //     }else {
+            //         return (a[c] < b[c]) ? 1 : -1;
+            //     };
+            // });
 
+            // return {
+            //     ...state,
+            //     quizNamesOrganizedByViews: quizPopularityStats
+            // };
+            // PUBLIC PUBLIC STARTS HERE
+        case GET_FROM_PUBLIC_TO_CALC:
             return {
                 ...state,
-                quizNamesOrganizedByViews: quizPopularityStats
-            };
-            // PUBLIC PUBLIC STARTS HERE
-
-
-
-
-
+                allPublicQuizesToCalc: action.payload
+            }
+        // case FILTER_QUIZ_OWNER_BY_NAME:
+        //     return {
+        //         ...state,
+        //         allPublicQuizesToCalc: state.allPublicQuizesToCalc.filter(quizes => {
+        //             if(quizes.userName === action.payload){
+        //                 return quizes;
+        //             }
+        //         })
+        //     }
         default:
             return state;
     };

@@ -59,6 +59,7 @@ const QuestionEditorMacroButtons = () => {
         } else if(isQuizPublished.isPub === "Unpublished") {
             updatePrivateQuiz(quizEdit);
         }else if(isQuizPublished.isPub === "Published") {
+            // add postId
             updatePublicQuizToPublicDatabase(quizEditPublic);
             console.log(quizEditPublic)
             updatePublicQuiz(quizEditPublic);
