@@ -17,11 +17,18 @@ import {
     QUIZWIP_ERROR,
     GET_QUIZ_WIPS,
     CLEAR_QUIZ_WIPS,
-    ALL_QUIZ_NAMES
+    ALL_QUIZ_NAMES,
+    CLEAR_QUIZ_EDIT
 } from '../types';
 
 const Reducer = (state, action) => {
     switch(action.type) {
+
+        case CLEAR_QUIZ_EDIT:
+            return {
+                ...state,
+                quizEdit: null
+            };
 
         case GET_QUIZ_WIPS:
             return {

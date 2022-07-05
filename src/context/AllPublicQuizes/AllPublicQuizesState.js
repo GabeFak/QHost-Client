@@ -6,10 +6,10 @@ import {
     FILTER_ALL_PUBLIC_QUIZES,
     CLEAR_FILTER_ALL_PUBLIC_QUIZES,
     FILL_IN_CURRENT_ACTIVE_QUIZ,
-    ADD_TO_VIEWS,
-    ADD_PUBLIC_QUIZ_TO_PUBLIC_DATABASE,
-    UPDATE_PUBLIC_QUIZ_PUBLIC_DATABASE,
-    DELETE_QUIZ_FROM_DATABASE,
+    // ADD_TO_VIEWS
+    // ADD_PUBLIC_QUIZ_TO_PUBLIC_DATABASE,
+    // UPDATE_PUBLIC_QUIZ_PUBLIC_DATABASE,
+    // DELETE_QUIZ_FROM_DATABASE,
     GET_FROM_PUBLIC,
     QUIZPUB_ERROR,
     SET_LOADING_PUBLIC_ACCESS
@@ -149,22 +149,6 @@ const AllPublicQuizesState = props => {
         dispatch({ type: FILL_IN_CURRENT_ACTIVE_QUIZ, payload: quizName});
     };
 
-    const addToViews = id => {
-        dispatch({ type: ADD_TO_VIEWS, payload: id})
-    };
-
-    const addPublicQuizToPublicDatabase = quiz => {
-        dispatch({ type: ADD_PUBLIC_QUIZ_TO_PUBLIC_DATABASE, payload: quiz})
-    };
-
-    const updatePublicQuizToPublicDatabase = quizUpdate => {
-        dispatch({ type: UPDATE_PUBLIC_QUIZ_PUBLIC_DATABASE, payload: quizUpdate})
-    };
-
-    const deletePublicQuizFromPublicDatabase = quizToDelete => {
-        dispatch({ type: DELETE_QUIZ_FROM_DATABASE, payload: quizToDelete})
-    };
-
     // GET_FROM_PUBLIC
     const getFromPublic = async () => {
         setLoadingPublic();
@@ -201,11 +185,7 @@ const AllPublicQuizesState = props => {
                 getFromPublic,
                 filterALLPublicQuizes,
                 clearAllPublicQuizesFilter,
-                fillIncurrentActiveQuiz,
-                addToViews,
-                addPublicQuizToPublicDatabase,
-                updatePublicQuizToPublicDatabase,
-                deletePublicQuizFromPublicDatabase
+                fillIncurrentActiveQuiz
             }}>
         { props.children }
         </allPublicQuizesContext.Provider>

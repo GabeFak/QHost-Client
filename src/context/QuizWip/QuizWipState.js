@@ -21,7 +21,8 @@ import {
     QUIZWIP_ERROR,
     GET_QUIZ_WIPS,
     CLEAR_QUIZ_WIPS,
-    ALL_QUIZ_NAMES 
+    ALL_QUIZ_NAMES,
+    CLEAR_QUIZ_EDIT
 } from '../types';
 
 const QuizWipState = props => {
@@ -134,6 +135,10 @@ const QuizWipState = props => {
             dispatch({ type: QUIZWIP_ERROR, payload: err.response.msg });
         };
     };
+
+    const clearQuizEdit = () => {
+        dispatch({ type: CLEAR_QUIZ_EDIT })
+    }
 
     // CLEAR_QUIZ_WIPS
     const clearQuizWIPS = () => {
@@ -268,6 +273,7 @@ const QuizWipState = props => {
             newQuizFill: state.newQuizFill,
             FillInNewQuizFinish: state.FillInNewQuizFinish,
             allQuizNamesPubAndWip: state.allQuizNamesPubAndWip,
+            clearQuizEdit,
             setAllQuizNames,
             getQuizWips,
             clearQuizWIPS,

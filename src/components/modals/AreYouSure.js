@@ -3,7 +3,6 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import QuizPublicContext from '../../context/QuizPublic/QuizPublicContext';
 import QuizWipContext from '../../context/QuizWip/QuizWipContext';
-import AllPublicQuizesContext from '../../context/AllPublicQuizes/AllPublicQuizesContext';
 
 const AreYouSure = ({ quizID, quizToDeletePublic, setAreYouSure, isPublished, postId}) => {
     const quizPublicContext = useContext(QuizPublicContext);
@@ -12,9 +11,6 @@ const AreYouSure = ({ quizID, quizToDeletePublic, setAreYouSure, isPublished, po
     const quizWipContext = useContext(QuizWipContext);
     const { deleteWipQuiz } = quizWipContext;
 
-    const allPublicQuizesContext = useContext(AllPublicQuizesContext);
-    const { deletePublicQuizFromPublicDatabase } = allPublicQuizesContext;
-
     const nav = useNavigate();
 
     const deleteAction = () => {
@@ -22,8 +18,7 @@ const AreYouSure = ({ quizID, quizToDeletePublic, setAreYouSure, isPublished, po
             deleteWipQuiz(quizID); //Checks if user is deleting an unpublished quiz, deletes from different state
         }else if(isPublished === 'Published' || isPublished === undefined) {
             deletePublicQuiz(quizToDeletePublic, postId);
-            // deletePublicQuizFromPublicDatabase(quizToDeletePublic);
-        } //Checks if user is deleting public quiz from public quiz editor or dashboard
+        } 
 
         if(isPublished === 'Unpublished' || isPublished === 'Published') {
             nav('../../Dashboard');

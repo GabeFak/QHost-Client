@@ -957,7 +957,11 @@ footer h3 {
 /* Alert */
 .alert {
   font-family: "Courier New", Courier, monospace;
+  background-color: var(--inbetween-grey);
+  border-radius: 2px;
+  margin-bottom: 15px ;
+  text-align: center;
 }
 .alert-danger {
-  color: red;
+  color: var(--dark-grey);
 }

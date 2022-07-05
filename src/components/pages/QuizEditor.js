@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
 import QuizNameAndQuestionsBox from './quizEditorComponents/QuizNameAndQuestionsBox';
 import QuestionEditor from './quizEditorComponents/QuestionEditor';
@@ -14,20 +14,26 @@ const QuizEditor = () => {
     const { loadUser } = authContext;
 
     const quizContext = useContext(QuizWipContext);
-    const { fillInQuizEditState, loading, setLoggedIn, catchFillInNewQuizFinishFalse, FillInNewQuizFinish, quizes, getQuizWips} = quizContext;
+    const { fillInQuizEditState, loading, setLoggedIn, catchFillInNewQuizFinishFalse, FillInNewQuizFinish, quizEdit, clearQuizEdit } = quizContext;
 
     const quizPublicContext = useContext(QuizPublicContext);
-    const { fillInQuizEditStatePublic, loadingPublic} = quizPublicContext;
+    const { fillInQuizEditStatePublic, loadingPublic, quizEditPublic} = quizPublicContext;
     
     const quizParam = useParams();
 
+    // const nav = useNavigate();
+
     useEffect(() => {
         loadUser();
+        
         if(FillInNewQuizFinish === true) {
             catchFillInNewQuizFinishFalse();
         }else if(quizParam.isPub === 'Unpublished') { 
+            // clearQuizEdit();
+            console.log(quizParam.quizName)
             fillInQuizEditState(quizParam.quizName);
         }else if(quizParam.isPub === 'Published') {
+            // clearQuizEdit();
             fillInQuizEditStatePublic(quizParam.quizName);
         };
     

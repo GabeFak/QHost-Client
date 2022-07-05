@@ -5,8 +5,10 @@ import { useParams, useNavigate} from 'react-router-dom';
 import QuizPublicContext from '../../context/QuizPublic/QuizPublicContext';
 import QuizWipContext from '../../context/QuizWip/QuizWipContext';
 import AuthContext from '../../context/Auth/AuthContext';
+import randomResponses from '../json/randomResponses.json';
 
 let currentIndex = 0;
+let correctCounter = 0;
 const QuizPreview = () => {
     const authContext = useContext(AuthContext);
     const { loadUser } = authContext;
@@ -58,9 +60,16 @@ const QuizPreview = () => {
 
     useEffect(() => {
         loadUser();
+
         if(quizParam.isPub === 'Unpublished') { 
+            if(quizEdit.id === '') {
+                nav('/dashboard')
+            }
             setPreviewQuizQuestions({...previewQuizQuestions, quizName: quizEdit.quizName, quizQuestions: quizEdit.quizQuestions});
         }else if(quizParam.isPub === 'Published') {
+            if(quizEditPublic.id === '') {
+                nav('/dashboard')
+            }
             setPreviewQuizQuestions({...previewQuizQuestions, quizQuestions: quizEditPublic.quizQuestions});
         };
         // eslint-disable-next-line
@@ -75,10 +84,21 @@ const QuizPreview = () => {
         };
     };
 
+    const incCorrectCounter = () => {
+        correctCounter++
+    }
+
     const displayQuestion = (question) => {
         let responces = []
             for(let i = 0; i <= 4; i++) {
+                if(question[Object.keys(question)[i]] === '') {
+                    let randNames = Object.entries(randomResponses);
+                    let randomSelection = Math.floor(Math.random() * (Object.keys(randomResponses).length - 1 + 1) + 1);
+                    let bogusAnswer = randNames[randomSelection - 1][1];
+                    responces[i] = bogusAnswer;
+                } else {
                 responces[i] = question[Object.keys(question)[i]];
+                };
             };
         responces.splice(0,1);
         const shuffledResponces = responces.sort(() => Math.random() - .5);
@@ -93,6 +113,7 @@ const QuizPreview = () => {
         currentIndex = currentIndex + 1;
             if(currentIndex === quizQuestions.length) {
                 setSelected({...selected, endOfQuiz: true});
+                
             }else{
                 setSelected({
                     ...selected,
@@ -111,6 +132,7 @@ const QuizPreview = () => {
 
     const reStart = () => {
         currentIndex = 0;
+        correctCounter = 0;
         setSelected({
             isCorrect:'',
             selectedAnAnswer:'',
@@ -129,6 +151,7 @@ const QuizPreview = () => {
         let name = e.target.name;
         if(e.target.value === answer && !selectedAnAnswer) {
             changeBtnState({...bntState, [name]: 'correct btn'});
+            incCorrectCounter();
             setSelected({
                 isCorrect: true,
                 selectedAnAnswer: true
@@ -143,6 +166,7 @@ const QuizPreview = () => {
     };
 
     const endQuiz = () => {
+        correctCounter = 0;
         nav('/dashboard');
     };
 
@@ -166,6 +190,7 @@ const QuizPreview = () => {
                 <button id="start-btn" className={startQuizControl ? "start-btn btn" : "hide"} onClick={start} >Start</button>
                     { endOfQuiz ? 
                             <>
+                                <div>{`You got ${correctCounter} out of ${quizQuestions.length}!`}</div>
                                 <button id="next-btn" className={!selectedAnAnswer ? "next-btn btn hide" : "next-btn btn"} onClick={endQuiz}>End Quiz</button>
                                 <button id="next-btn" className={!selectedAnAnswer ? "next-btn btn hide" : "next-btn btn"} onClick={reStart}>Restart</button>
                             </>

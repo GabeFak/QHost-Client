@@ -3,23 +3,28 @@ import { useEffect, useContext, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../../context/Auth/AuthContext';
 import AllPublicQuizesContext from "../../context/AllPublicQuizes/AllPublicQuizesContext";
+import randomResponses from '../json/randomResponses.json';
 
 let currentIndex = 0;
+let correctCounter = 0;
+
 const ActiveQuiz = () => {
+
     const nav = useNavigate();
 
     const allPublicQuizesContext = useContext(AllPublicQuizesContext);
-    const {currentActiveQuiz, addToViews, patchViews} = allPublicQuizesContext;
+    const {currentActiveQuiz, patchViews} = allPublicQuizesContext;
 
     const authContext = useContext(AuthContext);
     const { logout, isAuthenticated } = authContext;
 
     //state for quiestions, current index of question, and quiz name
     const [previewQuizQuestions, setPreviewQuizQuestions] = useState({
+        quizAuthor: null,
         quizName: null,
         quizQuestions: null
     });
-    const {quizQuestions, quizName} = previewQuizQuestions;
+    const {quizQuestions, quizName, quizAuthor} = previewQuizQuestions;
 
     const [selected, setSelected] = useState({
         isCorrect:'',
@@ -49,17 +54,20 @@ const ActiveQuiz = () => {
     const [showQuestion, setShowQuestion] = useState(false);
 
     useEffect(() => {
+        if(currentActiveQuiz.id === '') {
+            nav('/')
+        }
+
         if(isAuthenticated) {
             nav('/dashboard');
         }else{
             logout();
-        }
-        setPreviewQuizQuestions({...previewQuizQuestions, quizName: currentActiveQuiz.quizName, quizQuestions: currentActiveQuiz.quizQuestions});
+        };
+        setPreviewQuizQuestions({...previewQuizQuestions, quizName: currentActiveQuiz.quizName, quizQuestions: currentActiveQuiz.quizQuestions, quizAuthor: currentActiveQuiz.userName});
         // eslint-disable-next-line
     }, [isAuthenticated]);
     
     const start = () => {
-        // addToViews(currentActiveQuiz.id);
         patchViews(currentActiveQuiz.postId)
         currentIndex = 0;
         if(startQuizControl) {
@@ -69,10 +77,21 @@ const ActiveQuiz = () => {
         };
     };
 
+    const incCorrectCounter = () => {
+        correctCounter++
+    }
+
     const displayQuestion = (question) => {
         let responces = []
             for(let i = 0; i <= 4; i++) {
+                if(question[Object.keys(question)[i]] === '') {
+                    let randNames = Object.entries(randomResponses);
+                    let randomSelection = Math.floor(Math.random() * (Object.keys(randomResponses).length - 1 + 1) + 1);
+                    let bogusAnswer = randNames[randomSelection - 1][1];
+                    responces[i] = bogusAnswer;
+                } else {
                 responces[i] = question[Object.keys(question)[i]];
+                };
             };
         responces.splice(0,1);
         const shuffledResponces = responces.sort(() => Math.random() - .5);
@@ -105,6 +124,7 @@ const ActiveQuiz = () => {
 
     const reStart = () => {
         currentIndex = 0;
+        correctCounter = 0;
         setSelected({
             isCorrect:'',
             selectedAnAnswer:'',
@@ -123,6 +143,7 @@ const ActiveQuiz = () => {
         let name = e.target.name;
         if(e.target.value === answer && !selectedAnAnswer) {
             changeBtnState({...bntState, [name]: 'correct btn'});
+            incCorrectCounter();
             setSelected({
                 isCorrect: true,
                 selectedAnAnswer: true
@@ -137,13 +158,14 @@ const ActiveQuiz = () => {
     };
 
     const endQuiz = () => {
+        correctCounter = 0;
         nav('/');
     };
 
     return (
         <div className='quizPreviewContainer'>
             <div className="quizPreviewContainerInner">
-            <div className={startQuizControl ? 'inQuiz-question-display' : 'hide'}>{quizName}</div>
+            <div className={startQuizControl ? 'inQuiz-question-display' : 'hide'}>{quizName} by {quizAuthor}</div>
             <div id="question-container"className={!showQuestion ? "hide" : ''}>
                 <div id="question" className='inQuiz-question-display'>{question}</div>
                 <div id="answer-buttons" className="btn-grid">
@@ -157,6 +179,7 @@ const ActiveQuiz = () => {
                     <button id="start-btn" className={startQuizControl ? "start-btn btn" : "hide"} onClick={start} >Start</button>
                         { endOfQuiz ? 
                                 <>
+                                    <div>{`You got ${correctCounter} out of ${quizQuestions.length}!`}</div>
                                     <button id="next-btn" className={!selectedAnAnswer ? "next-btn btn hide" : "next-btn btn"} onClick={endQuiz}>End Quiz</button>
                                     <button id="next-btn" className={!selectedAnAnswer ? "next-btn btn hide" : "next-btn btn"} onClick={reStart}>Restart</button>
                                 </>
