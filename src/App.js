@@ -25,6 +25,7 @@ if(localStorage.token) {
 
 function App() {
   return (
+    <div  id="outer-container" >
     <AlertState>
       <AuthState>
           <AllPublicQuizesState>
@@ -32,7 +33,7 @@ function App() {
                 <QuizWipState>
                   <Router >
                     <Fragment>
-                      <Navbar />
+                      <Navbar outerContainerId={"outer-container"}/>
                       {/* <Alerts /> */}
                         <div className="container">
                           <Routes>
@@ -61,6 +62,7 @@ function App() {
           </AllPublicQuizesState>
       </AuthState>
     </AlertState>
+    </div>
   )
 };
 

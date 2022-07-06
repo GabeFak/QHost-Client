@@ -171,7 +171,7 @@ const ActiveQuiz = () => {
         <div className='quizPreviewContainer'>
             <div className="quizPreviewContainerInner">
             <div className={startQuizControl ? 'inQuiz-question-display' : 'hide'}>{quizName} by {quizAuthor}</div>
-            <div id="question-container"className={!showQuestion ? "hide" : ''}>
+            <div id="question-container"className={!showQuestion || endOfQuiz ? "hide" : ''}>
                 <div id="question" className='inQuiz-question-display'>{question}</div>
                 <div id="answer-buttons" className="btn-grid">
                     <button className={btn1} name='btn1' value={responces[0]} onClick={selectAnswer}>{responces[0]}</button>
