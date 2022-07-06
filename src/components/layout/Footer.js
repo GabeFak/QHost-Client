@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
   return ( 
     <footer>
-        <h3>QuizTime Copywrite 2022</h3>
+        <h3>QuizHost Copywrite 2022</h3>
     </footer>
   )
 };

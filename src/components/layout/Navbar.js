@@ -28,7 +28,7 @@ const Navbar = () => {
     return (
         <header className='browser-default'>
             <div className="header-logo">
-                <h1>QUIZTIME</h1>
+                <h1>QUIZHOST</h1>
             </div>
             <div className={`header-user-name ${loggedIn ? '' : "hide"}`}>{user !== null ? user.name : ''}</div>
                 {/* <div className={`header-links ${loggedIn ? 'hide' : ''}`}>
