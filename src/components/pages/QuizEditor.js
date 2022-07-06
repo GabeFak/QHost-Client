@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Spinner from '../layout/Spinner';
 import QuizNameAndQuestionsBox from './quizEditorComponents/QuizNameAndQuestionsBox';
 import QuestionEditor from './quizEditorComponents/QuestionEditor';
@@ -21,19 +21,14 @@ const QuizEditor = () => {
     
     const quizParam = useParams();
 
-    // const nav = useNavigate();
-
     useEffect(() => {
         loadUser();
         
         if(FillInNewQuizFinish === true) {
             catchFillInNewQuizFinishFalse();
-        }else if(quizParam.isPub === 'Unpublished') { 
-            // clearQuizEdit();
-            console.log(quizParam.quizName)
+        } else if(quizParam.isPub === 'Unpublished') { 
             fillInQuizEditState(quizParam.quizName);
-        }else if(quizParam.isPub === 'Published') {
-            // clearQuizEdit();
+        } else if(quizParam.isPub === 'Published') {
             fillInQuizEditStatePublic(quizParam.quizName);
         };
     
@@ -41,7 +36,8 @@ const QuizEditor = () => {
         //eslint-disable-next-line
     }, []);
 
-    if(loading || loadingPublic) { return <Spinner />;}else{
+    if(loading || loadingPublic) { return <Spinner />;
+    } else {
 
     return (
         <div className="dashboard-container">
@@ -54,11 +50,9 @@ const QuizEditor = () => {
                     :
                         <QuestionEditorPublic />
                 }
-                {/* make if else and write another question editor out for public quizes as it would be too much code on one page otherwise */}
             </div>
         </div>
-    )
-            }
+    )};
 };
 
 export default QuizEditor;

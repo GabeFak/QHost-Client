@@ -12,7 +12,6 @@ const QuizNameAndQuestionsBox = () => {
 
     const quizToEditWip = useContext(QuizWipContext);
     const { quizEdit, loading, clearCurrentQuestionEdit } = quizToEditWip;
-    // const { newQuizFill } = quizToEditWip;
 
     const quizPublicContext = useContext(QuizPublicContext);
     const { quizEditPublic, clearCurrentQuestionEditPublic, loadingPublic} = quizPublicContext;
@@ -53,7 +52,7 @@ const QuizNameAndQuestionsBox = () => {
                         <button onClick={() => {
                             if(isQuizPublished.isPub === 'Unpublished') {
                                 clearCurrentQuestionEdit();
-                            }else if(isQuizPublished.isPub === 'Published') {
+                            } else if(isQuizPublished.isPub === 'Published') {
                                 clearCurrentQuestionEditPublic();
                             };
                         }} className="question-element q-element-text-large"><b>+</b></button>

@@ -5,7 +5,7 @@ const SeeStats = ({selectedQuizStats, resetModal}) => {
     const { selectedQuizName } = selectedQuizStats;
     const [stats] = useGetQuizStats(selectedQuizName);
 
-    if(stats === undefined || stats.length === 0 || stats === null){
+    if(stats === undefined || stats.length === 0 || stats === null) {
         return ''
     }else {
         return (

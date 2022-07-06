@@ -12,7 +12,6 @@ const Home = () => {
 
     const allPublicQuizesContext = useContext(AllPublicQuizesContext);
     const { filterALLPublicQuizes, clearAllPublicQuizesFilter, filtered, getFromPublic, publicQuizes } = allPublicQuizesContext;
-    // const { publicQuizes} = allPublicQuizesContext;
 
     const quizWipContext = useContext(QuizWipContext);
     const { setLoggedOff } = quizWipContext;
@@ -23,12 +22,11 @@ const Home = () => {
     useEffect(() => { 
         setLoggedOff();
         getFromPublic();
-        // console.log(publicQuizes)
         if(isAuthenticated) {
             nav('/dashboard');
-        }else{
+        } else {
             logout();
-        }
+        };
 
         if(filtered === null) {
             searchText.current.value = '';

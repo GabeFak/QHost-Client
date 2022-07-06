@@ -19,7 +19,7 @@ export const ADD_QUIZ = "ADD_QUIZ";
 export const UPDATE_PRIVATE_QUIZ = "UPDATE_PRIVATE_QUIZ";
 
 export const QUIZWIP_ERROR = "QUIZWIP_ERROR";
-export const CLEAR_QUIZ_EDIT = "CLEAR_QUIZ_EDIT"
+export const CLEAR_QUIZ_EDIT = "CLEAR_QUIZ_EDIT";
 
 export const GET_QUIZ_WIPS = "GET_QUIZ_WIPS";
 export const CLEAR_QUIZ_WIPS = "CLEAR_QUIZ_WIPS";

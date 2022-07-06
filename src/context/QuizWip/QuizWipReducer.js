@@ -37,18 +37,18 @@ const Reducer = (state, action) => {
                 loading: false
             };
 
-            case CLEAR_QUIZ_WIPS:
-                return {
-                    ...state,
-                    loading: false,
-                    error: null,
-                    quizes: [],
-                    quizEdit: null,
-                    newQuizFill: null,
-                    currentQuestionEdit: null,
-                    loggedIn: false,
-                    FillInNewQuizFinish: false
-                };
+        case CLEAR_QUIZ_WIPS:
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                quizes: [],
+                quizEdit: null,
+                newQuizFill: null,
+                currentQuestionEdit: null,
+                loggedIn: false,
+                FillInNewQuizFinish: false
+            };
 
         case SET_LOADING:
             return {
@@ -162,10 +162,10 @@ const Reducer = (state, action) => {
 
         case DELETE_QUIZ_WIP:
             let quizListMinusDeletedQuiz = state.quizes.filter(quiz => quiz._id !== action.payload);
-                return {
-                    ...state,
-                    quizes: quizListMinusDeletedQuiz
-                };
+            return {
+                ...state,
+                quizes: quizListMinusDeletedQuiz
+            };
 
         case UPDATE_PRIVATE_QUIZ:
             let privateQuizToUpdate = state.quizes.filter(quiz => quiz._id !== action.payload._id);
@@ -186,7 +186,8 @@ const Reducer = (state, action) => {
         return {
             ...state,
             allQuizNamesPubAndWip: action.payload
-        }
+        };
+        
         default:
             return state;
     };

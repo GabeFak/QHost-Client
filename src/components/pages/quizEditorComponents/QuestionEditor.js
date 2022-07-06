@@ -4,7 +4,6 @@ import Spinner from '../../layout/Spinner';
 import QuestionEditorMacroButtons from './questionEditorButtons/QuestionEditorMacroButtons';
 import PleaseAddTitleAlert from '../../modals/PleaseAddTitleAlert';
 import QuizWipContext from '../../../context/QuizWip/QuizWipContext';
-import QuizEditor from '../QuizEditor';
 
 const QuestionEditor = () => {
     const [modal, setModal] = useState(false);
@@ -35,22 +34,22 @@ const QuestionEditor = () => {
                 WrongAnswer2: '',
                 WrongAnswer3: ''
             });
-        }
+        };
     }, [currentQuestionEdit, setQuestionEdit]);
 
     const submitQ = e => {
         e.preventDefault();
         let nameTaken = false;
         quizEdit.quizQuestions.map(qName => {
-            if(qName.title === questionEdit.title){
+            if(qName.title === questionEdit.title) {
                 nameTaken = true;
-            }
+            };
         });
         if(questionEdit.title !== '' && questionEdit.Answer !== '' && nameTaken !== true) {
             addQuestion(questionEdit);
         }else{
             setModal(true);
-        }
+        };
         setQuestionEdit({
             title: '',
             Answer: '',
@@ -58,7 +57,7 @@ const QuestionEditor = () => {
             WrongAnswer2: '',
             WrongAnswer3: ''
         });
-    }
+    };
 
     const updateQ = () => {
         if(currentQuestionEdit !== null) {
@@ -97,8 +96,6 @@ const QuestionEditor = () => {
             <div className="question-dashboard-macros-container">
                 <button onMouseUp={currentQuestionEdit !== null ? updateQ : submitQ } className="question-dashboard-macros">{currentQuestionEdit !== null ? 'Update Question' : 'Add Question' }</button>
                 <button onClick={onDelete} className="question-dashboard-macros">Remove Question</button>
-                {/* <button className="question-dashboard-macros">Add Photo</button>
-                <button className="question-dashboard-macros">Remove Photo</button> */}
             </div>
                 { modal && <PleaseAddTitleAlert closeModal={setModal}/>}
         </Fragment>

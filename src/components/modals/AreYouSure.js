@@ -18,11 +18,11 @@ const AreYouSure = ({ quizID, quizToDeletePublic, setAreYouSure, isPublished, po
             deleteWipQuiz(quizID); //Checks if user is deleting an unpublished quiz, deletes from different state
         }else if(isPublished === 'Published' || isPublished === undefined) {
             deletePublicQuiz(quizToDeletePublic, postId);
-        } 
+        };
 
         if(isPublished === 'Unpublished' || isPublished === 'Published') {
             nav('../../Dashboard');
-        }//redirects to dashboard if user is in either the public editor or the private editor
+        };//redirects to dashboard if user is in either the public editor or the private editor
 
         setAreYouSure(false); //closes modal   
     }; 

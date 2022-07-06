@@ -19,7 +19,7 @@ export default function useTopQuizCalc() {
         quizesToCalc = allPublicQuizesToCalc.filter(quizes => {
             if(quizes.userName === user.name) {
                 return quizes;
-            }
+            };
         });
 
         let quizesToBeArangedByViews = quizesToCalc;
@@ -34,7 +34,7 @@ export default function useTopQuizCalc() {
             });
 
             for(let i = 0; i < quizViews.length; i++) {
-                    quizPopularityStats[i] = [quizViews[i], quizNames[i]];
+                quizPopularityStats[i] = [quizViews[i], quizNames[i]];
             };
 
             let c = 0;

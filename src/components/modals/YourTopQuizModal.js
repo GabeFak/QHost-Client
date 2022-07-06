@@ -5,7 +5,7 @@ const YourTopQuizModal = ({ closeModal }) => {
     const [calc] = useTopQuizCalc();
     if(calc === undefined || calc.length === 0 || calc === null) {
         return ''
-    }else {
+    } else {
         return (
             <div className='modal-background'>
                 <div className='modal-border'>

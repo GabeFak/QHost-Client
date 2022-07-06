@@ -37,7 +37,7 @@ const Login = () => {
                 password
             });
         };
-    }
+    };
 
     useEffect(() => { 
         setLoggedOff();
@@ -45,7 +45,7 @@ const Login = () => {
             nav('/dashboard');
         }else{
             logout();
-        }
+        };
 
         if(error === 'Invalid credentials') {
             setAlert(error, 'danger');

@@ -15,11 +15,11 @@ export default function useGetQuizStats(quizNameToCalc) {
         getAllPublicQuizesToCalc();
     }, []);
 
-    if(allPublicQuizesToCalc !== null || allPublicQuizesToCalc !== []){
+    if(allPublicQuizesToCalc !== null || allPublicQuizesToCalc !== []) {
         quizesToCalc = allPublicQuizesToCalc.filter(quizes => {
-            if(quizes.userName === user.name){
+            if(quizes.userName === user.name) {
                 return quizes;
-            }
+            };
         });
         
         let stats = quizesToCalc.filter(quizes => quizes.quizName === quizNameToCalc);

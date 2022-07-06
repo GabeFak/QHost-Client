@@ -24,6 +24,7 @@ const ActiveQuiz = () => {
         quizName: null,
         quizQuestions: null
     });
+
     const {quizQuestions, quizName, quizAuthor} = previewQuizQuestions;
 
     const [selected, setSelected] = useState({
@@ -31,6 +32,7 @@ const ActiveQuiz = () => {
         selectedAnAnswer:'',
         endOfQuiz: ''
     });
+
     const { selectedAnAnswer, endOfQuiz} = selected;
 
     //state for current question
@@ -39,6 +41,7 @@ const ActiveQuiz = () => {
         answer: '',
         responces: ''
     });
+
     const { responces, question, answer} = currentQuestion;
 
     const [bntState, changeBtnState] = useState({
@@ -47,6 +50,7 @@ const ActiveQuiz = () => {
         btn3: 'btn',
         btn4: 'btn'
     });
+
     const { btn1, btn2, btn3, btn4} = bntState;
 
     const [startQuizControl, setStartQuizControl] = useState(true);
@@ -63,12 +67,13 @@ const ActiveQuiz = () => {
         }else{
             logout();
         };
+
         setPreviewQuizQuestions({...previewQuizQuestions, quizName: currentActiveQuiz.quizName, quizQuestions: currentActiveQuiz.quizQuestions, quizAuthor: currentActiveQuiz.userName});
         // eslint-disable-next-line
     }, [isAuthenticated]);
     
     const start = () => {
-        patchViews(currentActiveQuiz.postId)
+        patchViews(currentActiveQuiz.postId);
         currentIndex = 0;
         if(startQuizControl) {
             setStartQuizControl(false);
@@ -78,8 +83,8 @@ const ActiveQuiz = () => {
     };
 
     const incCorrectCounter = () => {
-        correctCounter++
-    }
+        correctCounter++;
+    };
 
     const displayQuestion = (question) => {
         let responces = []
@@ -96,17 +101,17 @@ const ActiveQuiz = () => {
         responces.splice(0,1);
         const shuffledResponces = responces.sort(() => Math.random() - .5);
         setCurrentQuestion({...currentQuestion, question: question.title, answer: question.Answer, responces: shuffledResponces});
-    }
+    };
 
     const setNextQ = () => {
         displayQuestion(previewQuizQuestions.quizQuestions[currentIndex]);
-    }
+    };
 
     const QAdvance = () => {
         currentIndex = currentIndex + 1;
             if(currentIndex === quizQuestions.length) {
                 setSelected({...selected, endOfQuiz: true});
-            }else{
+            } else {
                 setSelected({
                     ...selected,
                     isCorrect:'',
@@ -148,7 +153,7 @@ const ActiveQuiz = () => {
                 isCorrect: true,
                 selectedAnAnswer: true
             });
-        }else if(!selectedAnAnswer) {
+        } else if(!selectedAnAnswer) {
             changeBtnState({...bntState, [name]: 'wrong btn'});
             setSelected({
                 isCorrect: false,
@@ -177,13 +182,14 @@ const ActiveQuiz = () => {
             </div>
                 <div className="controls">
                     <button id="start-btn" className={startQuizControl ? "start-btn btn" : "hide"} onClick={start} >Start</button>
-                        { endOfQuiz ? 
+                        {endOfQuiz 
+                            ? 
                                 <>
                                     <div>{`You got ${correctCounter} out of ${quizQuestions.length}!`}</div>
                                     <button id="next-btn" className={!selectedAnAnswer ? "next-btn btn hide" : "next-btn btn"} onClick={endQuiz}>End Quiz</button>
                                     <button id="next-btn" className={!selectedAnAnswer ? "next-btn btn hide" : "next-btn btn"} onClick={reStart}>Restart</button>
                                 </>
-                                : 
+                            : 
                                     <button id="next-btn" className={!selectedAnAnswer ? "next-btn btn hide" : "next-btn btn"} onClick={QAdvance}>Next</button>
                         }
                 </div>

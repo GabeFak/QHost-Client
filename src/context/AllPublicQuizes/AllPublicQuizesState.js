@@ -136,15 +136,17 @@ const AllPublicQuizesState = props => {
 
     const [state, dispatch] = useReducer(allPublicQuizesReducer, initialState);
 
-    //filter public quizes search
+    // FILTER_ALL_PUBLIC_QUIZES filter public quizes search
     const filterALLPublicQuizes = input => {
-        dispatch({ type: FILTER_ALL_PUBLIC_QUIZES, payload: input})
+        dispatch({ type: FILTER_ALL_PUBLIC_QUIZES, payload: input });
     };
 
+    // CLEAR_FILTER_ALL_PUBLIC_QUIZES
     const clearAllPublicQuizesFilter = () => {
-        dispatch({ type: CLEAR_FILTER_ALL_PUBLIC_QUIZES})
+        dispatch({ type: CLEAR_FILTER_ALL_PUBLIC_QUIZES });
     };
 
+    // FILL_IN_CURRENT_ACTIVE_QUIZ
     const fillIncurrentActiveQuiz = quizName => {
         dispatch({ type: FILL_IN_CURRENT_ACTIVE_QUIZ, payload: quizName});
     };
@@ -159,10 +161,14 @@ const AllPublicQuizesState = props => {
         } catch (err) {
             dispatch({ type: QUIZPUB_ERROR, payload: err.response.msg });
         };
-    }
+    };
+
+    // SET_LOADING_PUBLIC_ACCESS
     const setLoadingPublic = () => {
         dispatch({ type: SET_LOADING_PUBLIC_ACCESS });
-    }
+    };
+
+    // PATCH REQUEST FOR PUBLIC VIEW
     const patchViews = async postId => {
         setLoadingPublic();
         try {
@@ -170,8 +176,7 @@ const AllPublicQuizesState = props => {
         } catch (err) {
             dispatch({ type: QUIZPUB_ERROR, payload: err.response.msg });
         };
-    }
-    
+    };
 
     return (
         <allPublicQuizesContext.Provider

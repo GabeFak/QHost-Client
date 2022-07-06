@@ -25,14 +25,12 @@ const AuthState = props => {
     };
     const [state, dispatch] = useReducer(AuthReducer, initialState);
 
-    //Actions go here.
-
-    // Set Loading
+    // SET_LOADING
     const setLoading = () => {
         dispatch({ type: SET_LOADING });
     };
 
-    //Load User
+    //USER_LOADED AUTH_ERROR
     const loadUser = async () => {
         setLoading();
         if(localStorage.token) {
@@ -51,7 +49,7 @@ const AuthState = props => {
         };
     };
 
-    //Register User
+    //REGISTER_SUCCESS REGISTER_FAIL
     const register = async formData => {
         const config = {
             headers: {
@@ -73,7 +71,7 @@ const AuthState = props => {
         };
     };
 
-    //Login User
+    //LOGIN_SUCCESS LOGIN_FAIL
     const login = async formData => {
         const config = {
             headers: {
@@ -95,10 +93,10 @@ const AuthState = props => {
         };
     };
 
-    //Logout User
-    const logout = () => dispatch({ type: LOGOUT })
+    //LOGOUT
+    const logout = () => dispatch({ type: LOGOUT });
 
-    //Clear Errors
+    //CLEAR_ERRORS 
     const clearErrors= () => dispatch({ type: CLEAR_ERRORS });
 
     return (

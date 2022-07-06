@@ -11,8 +11,6 @@ const AlertState = props => {
     const initialState = [];
     const [state, dispatch] = useReducer(AlertReducer, initialState);
 
-    //Actions go here.
-
     //Set Alert
     const setAlert = (msg, type, timeout = 5000) => {
         const id = uuid();

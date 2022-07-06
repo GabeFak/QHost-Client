@@ -40,9 +40,9 @@ const QuestionEditorPublic = () => {
         e.preventDefault();
         let nameTaken = false;
         quizEditPublic.quizQuestions.map(qName => {
-            if(qName.title === questionEditPublic.title){
+            if(qName.title === questionEditPublic.title) {
                 nameTaken = true;
-            }
+            };
         });
         if(questionEditPublic.title !== '' && questionEditPublic.Answer !== '' && nameTaken !== true) {
             addQuestionPublic(questionEditPublic);
@@ -95,8 +95,6 @@ const QuestionEditorPublic = () => {
             <div className="question-dashboard-macros-container">
                 <button onMouseUp={currentQuestionEditPublic !== null ? updateQ : submitQ } className="question-dashboard-macros">{currentQuestionEditPublic !== null ? 'Update Question' : 'Add Question' }</button>
                 <button onClick={onDelete} className="question-dashboard-macros">Remove Question</button>
-                {/* <button className="question-dashboard-macros">Add Photo</button>
-                <button className="question-dashboard-macros">Remove Photo</button> */}
             </div>
                 { modal && <PleaseAddTitleAlert closeModal={setModal}/>}
         </Fragment>

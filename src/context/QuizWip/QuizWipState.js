@@ -124,7 +124,6 @@ const QuizWipState = props => {
     };
     const [state, dispatch] = useReducer(quizWipReducer, initialState);
 
-    //Actions go here.
     // GET_QUIZ_WIPS 
     const getQuizWips = async () => {
         setLoading();
@@ -136,20 +135,21 @@ const QuizWipState = props => {
         };
     };
 
+    // CLEAR_QUIZ_EDIT
     const clearQuizEdit = () => {
-        dispatch({ type: CLEAR_QUIZ_EDIT })
-    }
+        dispatch({ type: CLEAR_QUIZ_EDIT });
+    };
 
     // CLEAR_QUIZ_WIPS
     const clearQuizWIPS = () => {
-        dispatch({ type: CLEAR_QUIZ_WIPS })
+        dispatch({ type: CLEAR_QUIZ_WIPS });
     };
 
     // FILL_IN_QUIZ_EDIT
     const fillInQuizEditState = urlParam => {
         setLoading();
         dispatch({ type: FILL_IN_QUIZ_EDIT, payload: urlParam });
-    }
+    };
 
     // SET_LOADING 
     const setLoading = () => dispatch({ type: SET_LOADING });
@@ -191,8 +191,8 @@ const QuizWipState = props => {
     // DELETE_QUESTION
     const deleteQuestion = questionID => {
         setLoading();
-        dispatch({ type: DELETE_QUESTION, payload: questionID});
-    }
+        dispatch({ type: DELETE_QUESTION, payload: questionID });
+    };
 
     // This adds to the private list of quizes from the public list. To add a new quiz from the UI, fillInNewQuiz is called and then
     // updateQuizWIP is called which will add it to the database by default if it doesn't already exist there. 

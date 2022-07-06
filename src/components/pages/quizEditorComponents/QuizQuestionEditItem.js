@@ -17,9 +17,9 @@ const QuizQuestionEditItem = ({ question }) => {
         <button onClick={() => {
             if(isQuizPublished.isPub === 'Unpublished') {
                 setCurrentQuestionEdit(question);
-            }else if(isQuizPublished.isPub === 'Published'){
+            } else if(isQuizPublished.isPub === 'Published') {
                 setCurrentQuestionEditPublic(question);
-            }
+            };
         }} className="question-element"><em>{question.title}</em> <b>{question.Answer}</b></button>
     )
 };

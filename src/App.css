@@ -686,6 +686,8 @@ footer h3 {
   padding-left: 40px;
   padding-right: 40px;
   padding-bottom: 60px;
+  overflow: scroll;
+  scrollbar-width: none; 
 }
 
 .quiz-q-frames h2 {

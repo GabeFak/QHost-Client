@@ -26,7 +26,6 @@ const NewQuizModal = ({ closeModal }) => {
     const nav = useNavigate();
 
     const [newQInfo, setNewQInfo] = useState({
-        // id: 'genByDB',
         user: _id,
         userName: name,
         quizName: '',

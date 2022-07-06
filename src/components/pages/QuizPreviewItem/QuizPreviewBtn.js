@@ -14,7 +14,7 @@ const QuizPreviewBtn = ({responce, answer, setSelected, selectedAnAnswer}) => {
                     isCorrect: true,
                     selectedAnAnswer: true,
                 });
-            }else{
+            } else {
                 setCorrectState({correctOrNotCorrect: 'wrong'});
                 setSelected({
                     isCorrect: false,
@@ -23,7 +23,6 @@ const QuizPreviewBtn = ({responce, answer, setSelected, selectedAnAnswer}) => {
             };
         };
     };
-
     return (<button className={`${correctState.correctOrNotCorrect} btn`} onClick={selectAnswer}>{responce}</button>)
 };
 

@@ -7,8 +7,6 @@ import Home from "./components/pages/Home";
 import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import PrivateRoute from './components/routing/PrivateRoute';
-// import Alerts from './components/layout/Alerts';
-// import AllPublicQuizes from './components/pages/AllPublicQuizes';
 import Footer from "./components/layout/Footer";
 import Dashboard from './components/pages/Dashboard';
 import QuizEditor from './components/pages/QuizEditor';
@@ -16,7 +14,6 @@ import QuizPreview from './components/pages/QuizPreview';
 import ActiveQuiz from './components/pages/ActiveQuiz';
 import QuizWipState from './context/QuizWip/QuizWipState';
 import QuizPublicState from './context/QuizPublic/QuizPublicState';
-import UserInfoState from './context/UserInfo/UserInfoState';
 import AllPublicQuizesState from './context/AllPublicQuizes/AllPublicQuizesState';
 import AuthState from './context/Auth/AuthState';
 import AlertState from './context/Alert/AlertState';
@@ -30,7 +27,6 @@ function App() {
   return (
     <AlertState>
       <AuthState>
-        <UserInfoState>
           <AllPublicQuizesState>
               <QuizPublicState>
                 <QuizWipState>
@@ -63,7 +59,6 @@ function App() {
                 </QuizWipState>
               </QuizPublicState>
           </AllPublicQuizesState>
-        </UserInfoState>
       </AuthState>
     </AlertState>
   )

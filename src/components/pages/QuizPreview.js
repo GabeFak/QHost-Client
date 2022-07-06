@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect, useContext, useState} from 'react';
 import { useParams, useNavigate} from 'react-router-dom';
-// import QuizPreviewBtn from './QuizPreviewItem/QuizPreviewBtn';
 import QuizPublicContext from '../../context/QuizPublic/QuizPublicContext';
 import QuizWipContext from '../../context/QuizWip/QuizWipContext';
 import AuthContext from '../../context/Auth/AuthContext';
@@ -9,6 +8,7 @@ import randomResponses from '../json/randomResponses.json';
 
 let currentIndex = 0;
 let correctCounter = 0;
+
 const QuizPreview = () => {
     const authContext = useContext(AuthContext);
     const { loadUser } = authContext;
@@ -17,7 +17,6 @@ const QuizPreview = () => {
 
     const quizPublicContext = useContext(QuizPublicContext);
     const { quizEditPublic } = quizPublicContext;
-    // const { fillInQuizEditStatePublic } = quizPublicContext;
 
     const quizWipContext = useContext(QuizWipContext);
     const { quizEdit } = quizWipContext;
@@ -27,14 +26,16 @@ const QuizPreview = () => {
         quizName: null,
         quizQuestions: null
     });
-    const {quizQuestions, quizName} = previewQuizQuestions;
+
+    const { quizQuestions, quizName } = previewQuizQuestions;
 
     const [selected, setSelected] = useState({
         isCorrect:'',
         selectedAnAnswer:'',
         endOfQuiz: ''
     });
-    const { selectedAnAnswer, endOfQuiz} = selected;
+
+    const { selectedAnAnswer, endOfQuiz } = selected;
 
     //state for current question
     const [currentQuestion, setCurrentQuestion] = useState({
@@ -42,7 +43,8 @@ const QuizPreview = () => {
         answer: '',
         responces: ''
     });
-    const { responces, question, answer} = currentQuestion;
+
+    const { responces, question, answer } = currentQuestion;
 
     const [bntState, changeBtnState] = useState({
         btn1: 'btn',
@@ -50,7 +52,8 @@ const QuizPreview = () => {
         btn3: 'btn',
         btn4: 'btn'
     });
-    const { btn1, btn2, btn3, btn4} = bntState;
+
+    const { btn1, btn2, btn3, btn4 } = bntState;
 
     const [startQuizControl, setStartQuizControl] = useState(true);
 
@@ -64,12 +67,12 @@ const QuizPreview = () => {
         if(quizParam.isPub === 'Unpublished') { 
             if(quizEdit.id === '') {
                 nav('/dashboard')
-            }
+            };
             setPreviewQuizQuestions({...previewQuizQuestions, quizName: quizEdit.quizName, quizQuestions: quizEdit.quizQuestions});
-        }else if(quizParam.isPub === 'Published') {
+        } else if(quizParam.isPub === 'Published') {
             if(quizEditPublic.id === '') {
                 nav('/dashboard')
-            }
+            };
             setPreviewQuizQuestions({...previewQuizQuestions, quizQuestions: quizEditPublic.quizQuestions});
         };
         // eslint-disable-next-line
@@ -86,7 +89,7 @@ const QuizPreview = () => {
 
     const incCorrectCounter = () => {
         correctCounter++
-    }
+    };
 
     const displayQuestion = (question) => {
         let responces = []
@@ -113,8 +116,7 @@ const QuizPreview = () => {
         currentIndex = currentIndex + 1;
             if(currentIndex === quizQuestions.length) {
                 setSelected({...selected, endOfQuiz: true});
-                
-            }else{
+            } else {
                 setSelected({
                     ...selected,
                     isCorrect:'',
@@ -177,13 +179,10 @@ const QuizPreview = () => {
             <div id="question-container"className={!showQuestion ? "hide" : ''}>
                 <div id="question" className='inQuiz-question-display'>{question}</div>
                 <div id="answer-buttons" className="btn-grid">
-                    {/* {question != '' && responces.map((responce, index) => (
-                        <QuizPreviewBtn ref={ref} key={index} responce={responce} answer={answer} setSelected={setSelected} selectedAnAnswer={selectedAnAnswer}/>
-                    ))} */}
-                        <button className={btn1} name='btn1' value={responces[0]} onClick={selectAnswer}>{responces[0]}</button>
-                        <button className={btn2} name='btn2' value={responces[1]} onClick={selectAnswer}>{responces[1]}</button>
-                        <button className={btn3} name='btn3' value={responces[2]} onClick={selectAnswer}>{responces[2]}</button>
-                        <button className={btn4} name='btn4' value={responces[3]} onClick={selectAnswer}>{responces[3]}</button>   
+                    <button className={btn1} name='btn1' value={responces[0]} onClick={selectAnswer}>{responces[0]}</button>
+                    <button className={btn2} name='btn2' value={responces[1]} onClick={selectAnswer}>{responces[1]}</button>
+                    <button className={btn3} name='btn3' value={responces[2]} onClick={selectAnswer}>{responces[2]}</button>
+                    <button className={btn4} name='btn4' value={responces[3]} onClick={selectAnswer}>{responces[3]}</button>   
                 </div>
             </div>
             <div className="controls">
@@ -194,7 +193,7 @@ const QuizPreview = () => {
                                 <button id="next-btn" className={!selectedAnAnswer ? "next-btn btn hide" : "next-btn btn"} onClick={endQuiz}>End Quiz</button>
                                 <button id="next-btn" className={!selectedAnAnswer ? "next-btn btn hide" : "next-btn btn"} onClick={reStart}>Restart</button>
                             </>
-                            : 
+                        : 
                             <button id="next-btn" className={!selectedAnAnswer ? "next-btn btn hide" : "next-btn btn"} onClick={QAdvance}>Next</button>
                     }
                 </div>

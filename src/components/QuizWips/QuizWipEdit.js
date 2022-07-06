@@ -1,4 +1,4 @@
-import React, { Fragment, useContext} from 'react';
+import React, { Fragment, useContext } from 'react';
 import QuizWipEditItem  from './QuizWipEditItem';
 import QuizWipContext from '../../context/QuizWip/QuizWipContext';
 

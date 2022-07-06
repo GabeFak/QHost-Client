@@ -98,7 +98,7 @@ const QuizPublicState = props => {
 
     const [state, dispatch] = useReducer(quizPublicReducer, initialState);
 
-    //Actions go here.
+    //GET_QUIZ_PUB
     const getQuizPub = async () => {
         setLoading();
         try {
@@ -114,19 +114,24 @@ const QuizPublicState = props => {
         dispatch({ type: CLEAR_QUIZ_PUB });
     };
 
+    // FILL_IN_QUIZ_EDIT_PUBLIC
     const fillInQuizEditStatePublic = urlParam => {
         setLoading();
         dispatch({ type: FILL_IN_QUIZ_EDIT_PUBLIC, payload: urlParam });
     };
-
+    
+    // SET_LOADING_PUBLIC
     const setLoading = () => dispatch({ type: SET_LOADING_PUBLIC });
 
+    // CLEAR_CURRENT_PUBLIC_Q_EDIT
     const clearCurrentQuestionEditPublic = () => dispatch({ type: CLEAR_CURRENT_PUBLIC_Q_EDIT });
 
+    // CURRENT_PUBLIC_Q_EDIT
     const setCurrentQuestionEditPublic = questionName => {
         dispatch({ type: CURRENT_PUBLIC_Q_EDIT, payload: questionName });
     };
 
+    // UPDATE_QUESTION_PUBLIC
     const updateQuestionPublic = (currentQ, questionToUpdate) => {
         setLoading();
         let payloadNew = state.quizEditPublic; 
@@ -139,16 +144,19 @@ const QuizPublicState = props => {
         clearCurrentQuestionEditPublic();
     };
 
+    // DELETE_QUESTION_PUBLIC
     const deleteQuestionPublic = questionTitle => {
         setLoading();
         dispatch({ type: DELETE_QUESTION_PUBLIC, payload: questionTitle });
     };
 
+    // ADD_QUESTION_PUBLIC
     const addQuestionPublic = newQuestion => {
         setLoading();
         dispatch({ type: ADD_QUESTION_PUBLIC, payload: newQuestion });
     };
 
+    // ADD_PUBLIC_QUIZ
     const addQuizPublic = async newPublicQuiz => {
         setLoading();
         newPublicQuiz.postId = newPublicQuiz._id
@@ -173,6 +181,7 @@ const QuizPublicState = props => {
         };
     };
 
+    // DELETE_QUIZ_PUBLIC
     const deletePublicQuiz = async (currentQuizID, postId) => {
         try {
             await axios.delete(`/api/quizes/${currentQuizID}`);
@@ -181,13 +190,13 @@ const QuizPublicState = props => {
             dispatch({ type: QUIZPUB_ERROR, payload: err.response.msg });
         };
         try {
-            console.log(postId)
             await axios.delete(`/api/public/${postId}`);
         } catch (err) {
             dispatch({ type: QUIZPUB_ERROR, payload: err.response.msg });
         };
     };
 
+    // UPDATE_PUBLIC_QUIZ
     const updatePublicQuiz = async quizToUpdate => {
         setLoading();
         const config = {
@@ -210,19 +219,22 @@ const QuizPublicState = props => {
         };
     };
 
-    //filter public quizes search
+    //FILTER_PUBLIC_QUIZES
     const filterPublicQuizes = input => {
         dispatch({ type: FILTER_PUBLIC_QUIZES, payload: input });
     };
 
+    // CLEAR_FILTER
     const clearFilter = () => {
         dispatch({ type: CLEAR_FILTER });
     };
-
+    
+    // SET_TOP_QUIZ
     const setTopQuizes = (quizInfo) => {
         dispatch({ type: SET_TOP_QUIZ, payload: quizInfo });
     };
 
+    // GET_FROM_PUBLIC_TO_CALC
     const getAllPublicQuizesToCalc = async () => {
         try {
             const res = await axios.get('/api/public');
@@ -232,8 +244,6 @@ const QuizPublicState = props => {
             dispatch({ type: QUIZPUB_ERROR, payload: err.response.msg });
         };
     };
-
-
 
     return (
         <quizPublicContext.Provider

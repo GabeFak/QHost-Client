@@ -9,11 +9,8 @@ import NewQuizModal from '../../modals/NewQuizModal';
 import AreYouSure from '../../modals/AreYouSure';
 import SeeStats from '../../modals/SeeStats';
 
-// import useIsQuizNameTaken from '../../hooks/useIsQuizNameTaken';
 
 const MainDashboard = ({publicQuizes}) => {
-    // const [quizNames] = useIsQuizNameTaken();
-
     const [modal, setModal] = useState(false);
 
     const [modalState, setModalState] = useState({

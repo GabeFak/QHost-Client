@@ -47,8 +47,7 @@ const PublishedQuizesList= ({ publicQuizes }) => {
                 </div>
             </div>
         </Fragment>
-    )
-                    }
+    )};
 };
 
 export default PublishedQuizesList;

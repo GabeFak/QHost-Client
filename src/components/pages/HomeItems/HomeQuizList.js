@@ -21,6 +21,6 @@ const HomeQuizList = ({ quizName, quizAuthor, views}) => {
             <div>Views: {views}</div>
         </div>
     )
-}
+};
 
 export default HomeQuizList

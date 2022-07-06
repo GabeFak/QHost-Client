@@ -11,10 +11,10 @@ const Dashboard = () => {
     const { loadUser } = authContext;
 
     const quizWipContext = useContext(QuizWipContext);
-    const { setLoggedIn, getQuizWips, loading } = quizWipContext;
+    const { setLoggedIn, getQuizWips } = quizWipContext;
 
     const quizPublicContext = useContext(QuizPublicContext);
-    const { publicQuizes, getQuizPub  } = quizPublicContext;
+    const { publicQuizes, getQuizPub } = quizPublicContext;
     
     useEffect(() => { 
         loadUser();

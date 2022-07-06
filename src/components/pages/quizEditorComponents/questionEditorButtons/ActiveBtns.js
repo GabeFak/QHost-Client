@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const ActiveBtns = ({ saveQuiz, quizEdit, isQuizPublished, setAreYouSureState, publish, seeStats, linkToPreview }) => {
-  return (
+    return (
         <>
             { isQuizPublished.isPub === "Unpublished" ? 
                 <>
@@ -38,7 +38,7 @@ const ActiveBtns = ({ saveQuiz, quizEdit, isQuizPublished, setAreYouSureState, p
                 </>
             }
         </>
-  )
+    )
 };
 
 export default ActiveBtns;
