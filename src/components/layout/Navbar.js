@@ -38,17 +38,18 @@ const Navbar = () => {
                 { loggedIn ? 
                     <Fragment>
                         <div className="header-links">
-                            <Link to="/Dashboard">| Dashboard</Link>
+                            <Link to="/Dashboard">Dashboard</Link>
                         </div> 
                         <div className='pipe'></div>
                         <div className="header-link-blue">
-                            <a onClick={onLogout} href='#!'>| Log Out</a>
+                            <a onClick={onLogout} href='#!'>Log Out</a>
                         </div> 
                     </Fragment> 
                 : 
                     <div className="header-links">
-                        <Link to="/">| Home</Link>
-                        <Link to="/login">| Log In</Link>
+                        <Link to="/">Home</Link>
+                        <Link to="/login">Log In</Link>
+                        <Link to="/register">Register</Link>
                     </div>
                 }
         </header>

@@ -189,12 +189,12 @@ const QuizPreview = () => {
                 <button id="start-btn" className={startQuizControl ? "start-btn btn" : "hide"} onClick={start} >Start</button>
                     { endOfQuiz ? 
                             <>
-                                <div>{`You got ${correctCounter} out of ${quizQuestions.length}!`}</div>
+                                <div className='score'>{`You got ${correctCounter} out of ${quizQuestions.length}!`}</div>
                                 <button id="next-btn" className={!selectedAnAnswer ? "next-btn btn hide" : "next-btn btn"} onClick={endQuiz}>End Quiz</button>
                                 <button id="next-btn" className={!selectedAnAnswer ? "next-btn btn hide" : "next-btn btn"} onClick={reStart}>Restart</button>
                             </>
                         : 
-                            <button id="next-btn" className={!selectedAnAnswer ? "next-btn btn hide" : "next-btn btn"} onClick={QAdvance}>Next</button>
+                            <button id="next-btn" className={!selectedAnAnswer ? "next-btn btn hide" : "next-q-btn next-btn btn"} onClick={QAdvance}>Next</button>
                     }
                 </div>
             </div>

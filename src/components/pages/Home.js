@@ -51,7 +51,7 @@ const Home = () => {
 
     return (
         <Fragment>
-            <div className="home-landing-wraper">
+            {/* <div className="home-landing-wraper">
                 <div className="home-register-container">
                     <h1>Quiz Creation Made Easy</h1>
                         <div className="register-form-home">
@@ -61,7 +61,7 @@ const Home = () => {
                             <div className="reg-btn-home"><Link to="/register">Register</Link></div>
                         </div>
                 </div>
-            </div>
+            </div> */}
             <div className="search-wrapper">
                 <div className='search-all-quizes'>Search All Quizes</div>
                 <div className='search-bar-dropdown'>

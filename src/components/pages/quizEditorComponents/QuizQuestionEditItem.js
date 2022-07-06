@@ -20,7 +20,7 @@ const QuizQuestionEditItem = ({ question }) => {
             } else if(isQuizPublished.isPub === 'Published') {
                 setCurrentQuestionEditPublic(question);
             };
-        }} className="question-element"><em>{question.title}</em> <b>{question.Answer}</b></button>
+        }} className="question-element"><em>{question.title}</em> <b className='answer'>{question.Answer}</b></button>
     )
 };
 

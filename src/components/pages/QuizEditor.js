@@ -14,10 +14,10 @@ const QuizEditor = () => {
     const { loadUser } = authContext;
 
     const quizContext = useContext(QuizWipContext);
-    const { fillInQuizEditState, loading, setLoggedIn, catchFillInNewQuizFinishFalse, FillInNewQuizFinish, quizEdit, clearQuizEdit } = quizContext;
+    const { fillInQuizEditState, loading, setLoggedIn, catchFillInNewQuizFinishFalse, FillInNewQuizFinish } = quizContext;
 
     const quizPublicContext = useContext(QuizPublicContext);
-    const { fillInQuizEditStatePublic, loadingPublic, quizEditPublic} = quizPublicContext;
+    const { fillInQuizEditStatePublic, loadingPublic } = quizPublicContext;
     
     const quizParam = useParams();
 
@@ -40,7 +40,7 @@ const QuizEditor = () => {
     } else {
 
     return (
-        <div className="dashboard-container">
+        <div className="dashboard-container-quiz-edit dashboard-container">
             <div className="left-elements-quiz-creator">
                 <QuizNameAndQuestionsBox />
             </div>

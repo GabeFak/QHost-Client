@@ -185,7 +185,7 @@ const ActiveQuiz = () => {
                         {endOfQuiz 
                             ? 
                                 <>
-                                    <div>{`You got ${correctCounter} out of ${quizQuestions.length}!`}</div>
+                                    <div className='score'>{`You got ${correctCounter} out of ${quizQuestions.length}!`}</div>
                                     <button id="next-btn" className={!selectedAnAnswer ? "next-btn btn hide" : "next-btn btn"} onClick={endQuiz}>End Quiz</button>
                                     <button id="next-btn" className={!selectedAnAnswer ? "next-btn btn hide" : "next-btn btn"} onClick={reStart}>Restart</button>
                                 </>
