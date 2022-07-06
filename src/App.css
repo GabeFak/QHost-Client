@@ -92,17 +92,20 @@ i {
   background-color: var(--blue-color);
   overflow-x: hidden;
   width: 300px;
+  border-radius: 5px;
 }
 
 .search-bar-dropdown > input {
   color: white;
   padding-left: 20px;
+  border-radius: 5px;
 }
 
 .list-group {
   background-color: var(--inbetween-grey);
   /* border: 3px solid var(--dark-grey); */
   margin: unset;
+  border-radius: 5px;
 }
 
 .search-dropdown-div {
@@ -417,6 +420,7 @@ header {
   border-bottom: none;
   border-left: none;
   border-right: none;
+  border-radius: 5px;
   background-color: var(--inbetween-grey);
   cursor: pointer;
 }
@@ -554,6 +558,7 @@ header {
     padding: unset;
     padding-bottom: 10px;
     font-size: 1.6em;
+    color: var(--dark-grey);
   }
 
   .row > input {
@@ -618,6 +623,7 @@ footer h3 {
   margin-bottom: 20px;
   width: 100%;
   padding-left: 20px;
+  border-radius: 0px 5px 5px 0px;
 }
 
 .public-quizes-box {
@@ -629,6 +635,7 @@ footer h3 {
   padding-left: 40px;
   padding-right: 40px;
   padding-bottom: 60px;
+  border-radius: 0px 5px 0px 0px;
    scrollbar-width: none;
    overflow: scroll;
 }
@@ -637,6 +644,7 @@ footer h3 {
   margin: unset;
   padding: 20px 0px;
   background-color: var(--light-grey);
+  border-radius: 5px;
 }
 
 .quiz-element {
@@ -645,6 +653,7 @@ footer h3 {
   padding-top: 15px;
   padding-bottom: 15px;
   color: white;
+  border-radius: 5px;
 }
 
 @media screen and (max-width: 955px) {
@@ -686,6 +695,7 @@ footer h3 {
   color: var(--dark-grey);
   background-color: var(--light-grey);
   text-align: center;
+  border-radius: 5px;
 }
 
 .wip-display-container {
@@ -722,15 +732,18 @@ footer h3 {
 
 .dashboard-grid-container-item:nth-child(1) {
   grid-column: span 1;
+  border-radius: 5px;
 }
 
 .dashboard-grid-container-item:nth-child(2) {
   grid-column: span 1;
+  border-radius: 5px;
 }
 
 .dashboard-grid-container-item:nth-child(3) {
   grid-column: span 2;
   grid-row: span 1;
+  border-radius: 5px;
 }
 
 .quiz-dashboard-macros,
@@ -810,6 +823,7 @@ footer h3 {
 
   .dashboard-grid-container {
     gap: 10px;
+    padding-bottom: 120px;
   }
 
   .quiz-dashboard-macros, .quiz-editor-macros {
@@ -853,6 +867,7 @@ footer h3 {
   width: 100%;
   color: white;
   background-color: var(--dark-grey);
+  border-radius: 0px 5px 5px 0px;
 }
 
 .icon-box {
@@ -873,12 +888,14 @@ footer h3 {
   padding-bottom: 60px;
   overflow: scroll;
   scrollbar-width: none; 
+  border-radius: 0px 5px 0px 0px;
 }
 
 .quiz-q-frames h2 {
   margin: unset;
   padding: 20px 0px;
   background-color: var(--light-grey);
+  border-radius: 5px;
 }
 
 .question-container {
@@ -899,12 +916,14 @@ footer h3 {
   cursor: pointer;
   max-width: 200px;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 .q-element-text-large {
   font-size: 3em;
   color: var(--dark-grey);
 }
+
 
 @media screen and (max-width: 855px) {
   .dashboard-container-quiz-edit {
@@ -922,13 +941,13 @@ footer h3 {
     margin-bottom: 20px;
     background-color: var(--dark-grey);
     text-align: center;
-    height: 200px;
+    height: 160px;
     min-width: 350px;
-    padding-top: 30px;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 0px;
     overflow-y: hidden;
+    border-radius: 0px 0px 0px 0px;
   }
 
   .quiz-q-frames h2 {
@@ -940,7 +959,7 @@ footer h3 {
   }
 
   .question-container {
-    margin-top: 20px;
+    margin-top: 0px;
     /* position: relative; */
     display: inline-flex;
     overflow-x: scroll;
@@ -1025,6 +1044,7 @@ footer h3 {
   padding-right: 10px;
   padding-left: 10px;
   border: 2px solid var(--dark-grey);
+  border-radius: 5px;
 }
 
 .q-and-a-input {
@@ -1041,6 +1061,7 @@ footer h3 {
   font-family: var(--font), Courier, monospace;
   font-size: 2em;
   margin-top: 20px;
+  border-radius: 5px;
 }
 
 .three-alt-options {
@@ -1058,6 +1079,7 @@ footer h3 {
   margin-top: 70px;
   margin-left: 10px;
   margin-right: 10px;
+  border-radius: 5px;
 }
 
 .question-dashboard-macros-container {
@@ -1080,6 +1102,20 @@ footer h3 {
   border-bottom: 2px solid var(--dark-grey);
   border-top-width: 0px;
   border-left-width: 0px;
+}
+
+@media screen and (max-width: 1024px) {
+  .question-dashboard-macros {
+    font-size: 0.8em;
+    padding: 6px 30px;
+    /* margin-bottom: 30px; */
+  }
+}
+
+@media screen and (max-width: 855px) {
+  .question-dashboard-macros {
+    margin-bottom: 30px;
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -1166,6 +1202,7 @@ footer h3 {
   padding-right: 15px;
   color: var(--dark-grey);
   margin-bottom: 20px;
+  border-radius: 5px;
 }
 
 .modal-title > h1 {
@@ -1198,6 +1235,7 @@ footer h3 {
   border-left-width: 0px;
   margin-bottom: 10px;
   width: 100%;
+  border-radius: 5px;
 }
 
 .modal-button-grey {
