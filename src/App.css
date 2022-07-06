@@ -333,6 +333,43 @@ header {
   background-color: var(--dark-grey);
   border: 3px solid black;
 }
+
+.quiz-wrapper {
+  margin-bottom: 20px;
+  margin-left: 80px;
+  margin-right: 80px;
+  border: 3px solid var(--dark-grey);
+  border-radius: 3px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.all-quizes{
+  color: var(--dark-grey);
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.public-quiz-list-home {
+  color: var(--dark-grey);
+  display: flex;
+  font-family: "Courier New", Courier, monospace;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 15px 20px;
+  padding-bottom: 10px;
+  border: 2px solid var(--dark-grey);
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  background-color: var(--inbetween-grey);
+  cursor: pointer;
+}
 /* End Recent */
 
 /* FORMS */
@@ -446,6 +483,8 @@ footer h3 {
   padding-left: 40px;
   padding-right: 40px;
   padding-bottom: 60px;
+   scrollbar-width: none;
+   overflow: scroll;
 }
 
 .public-quizes-box h2 {
@@ -487,6 +526,8 @@ footer h3 {
   height: 400px;
   background-color: white;
   padding: 20px 40px;
+  scrollbar-width: none;
+  overflow: scroll;
 }
 
 .works-in-progress h1 {
@@ -772,20 +813,27 @@ footer h3 {
   background-color: var(--dark-grey);
   width: 425px;
   border-radius: 5px;
-  display: flex;
-  align-items: center;
+  padding-left: 15px;
+  /* display: flex; */
+  /* text-align: center;
+  align-items: center; */
   justify-content: center;
+  max-height: 500px;
+  scrollbar-width: none;
+  overflow: scroll;
+
 }
 
 .modal-container {
-  width: 380px;
+  width: 395px;
   border-radius: 5px;
   background-color: var(--light-grey);
   box-shadow: rgba(0, 0, 0, 0.9);
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column;
   justify-content: center;
   align-items: center;
+  justify-self: start; */
   padding: 25px;
   margin-top: 25px;
   margin-bottom: 25px;

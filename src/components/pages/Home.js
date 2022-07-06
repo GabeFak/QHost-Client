@@ -4,6 +4,7 @@ import HomeSearchItem from './HomeItems/HomeSearchItem';
 import AuthContext from '../../context/Auth/AuthContext';
 import QuizWipContext from '../../context/QuizWip/QuizWipContext';
 import AllPublicQuizesContext from '../../context/AllPublicQuizes/AllPublicQuizesContext';
+import HomeQuizList from './HomeItems/HomeQuizList';
 
 const Home = () => {
     const searchText = useRef('');
@@ -42,7 +43,9 @@ const Home = () => {
 
     function onChange(e) {
         if((searchText.current.value !== '')) {
-            filterALLPublicQuizes(e.target.value);
+            if(!searchText.current.value.includes('\\')) {
+                filterALLPublicQuizes(e.target.value);
+            };
         }else{
             clearAllPublicQuizesFilter();
         };
@@ -69,8 +72,16 @@ const Home = () => {
                         {filtered !== null && filtered.map(filter => (
                         <HomeSearchItem quizName={filter.quizName} key={filter._id} clearInput={clearInput}/>
                         ))}
+                        
                     </div>
+                    
                 </div>
+            </div>
+            <div className="quiz-wrapper">
+                <div className='all-quizes'>All Quizes</div>
+                {publicQuizes.map(quiz => (
+                    <HomeQuizList key={quiz._id} quizName={quiz.quizName} quizAuthor={quiz.userName} views={quiz.views}/>
+                ))}
             </div>
             
             {/* <div className="recent-quizes-wrapper">
