@@ -73,7 +73,7 @@ const QuizPreview = () => {
             if(quizEditPublic.id === '') {
                 nav('/dashboard')
             };
-            setPreviewQuizQuestions({...previewQuizQuestions, quizQuestions: quizEditPublic.quizQuestions});
+            setPreviewQuizQuestions({...previewQuizQuestions, quizName: quizEditPublic.quizName, quizQuestions: quizEditPublic.quizQuestions});
         };
         // eslint-disable-next-line
     }, []);

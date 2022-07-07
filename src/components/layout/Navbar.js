@@ -51,11 +51,17 @@ const Navbar = ({ outerContainerId }) => {
                             
                         </Fragment> 
                     : 
-                        <div className="header-links">
-                            <Link to="/">Home</Link>
-                            <Link to="/login">Log In</Link>
-                            <Link to="/register">Register</Link>
-                        </div>
+                        <Fragment>
+                            <div className="header-links">
+                                <Link to="/">Home</Link>
+                            </div>
+                            <div className="header-links">
+                                <Link to="/login">Log In</Link>
+                            </div>
+                            <div className="header-links">
+                                <Link to="/register">Register</Link>
+                            </div>
+                        </Fragment>
                     }
             </header>
             
