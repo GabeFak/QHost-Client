@@ -92,6 +92,7 @@ const Register = () => {
                     </div>                  
                 </form>
             </div>
+            <div className='height-spacer-2'></div>
         </Fragment>
     )
 };

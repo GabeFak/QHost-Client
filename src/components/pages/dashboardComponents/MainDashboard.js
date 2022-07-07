@@ -44,6 +44,7 @@ const MainDashboard = ({publicQuizes}) => {
                 <MakeNewQuiz openModal={setNewQuizModal}/>
                 <MostViewedQuiz openModal={setTopQuizModalState}/>
                 <WipSelect />
+                {/* <div className='height-spacer-3'></div> */}
             </div>
                 { modal && <EditPublicModal quizToDel={setSelectPublicQuizToDelete} setAreYouSure={setAreYouSure} modalState={modalState} closeModal={setModal} publicQuizes={publicQuizes} setSeeStats={setSeeStats} setSelectedQuizStats={setSelectedQuizStats}/>}
                 { areYouSure && <AreYouSure postId={selectedPublicQuizToDelete.publicQuizToDeletePostId} quizToDeletePublic={selectedPublicQuizToDelete.publicQuizToDeleteID} setAreYouSure={setAreYouSure} />}

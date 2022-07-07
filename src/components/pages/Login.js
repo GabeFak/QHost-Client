@@ -83,6 +83,7 @@ const Login = () => {
                     </div>
                 </div>
             </div>
+            <div className='height-spacer-2'></div>
         </Fragment>
     )
 };

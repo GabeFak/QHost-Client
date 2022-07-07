@@ -81,6 +81,7 @@ const Home = () => {
                     <HomeQuizList key={quiz._id} quizName={quiz.quizName} quizAuthor={quiz.userName} views={quiz.views}/>
                 ))}
             </div>
+            <div className='height-spacer'></div>
             
             {/* <div className="recent-quizes-wrapper">
                 <div className="most-recent">
