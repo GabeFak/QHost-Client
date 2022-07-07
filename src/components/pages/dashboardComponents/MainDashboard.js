@@ -34,7 +34,7 @@ const MainDashboard = ({publicQuizes}) => {
 
     return (
         <Fragment>
-            <div className="quiz-dashboard-macros-container">
+            <div className="quiz-dashboard-macros-container-main quiz-dashboard-macros-container">
                 <button className="quiz-dashboard-macros first-macro-button" onClick={() => {setModal(true); setModalState({state:'Quiz Stats'})}}>Quiz Stats</button>
                 <button className="quiz-dashboard-macros middle-macro-button" onClick={() => {setModal(true); setModalState({state:'Delete Quiz'})}}>Delete Quiz</button>
                 <button className="quiz-dashboard-macros middle-macro-button" onClick={() => {setModal(true); setModalState({state:'Edit Public Quizes'})}}>Edit Quiz</button>

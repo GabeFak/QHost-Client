@@ -1,0 +1,6 @@
+@media screen and (min-width: 1920px) {
+    .home-landing-wraper, .search-wrapper, .quiz-wrapper {
+        margin-left: 400px;
+        margin-right: 400px;
+    }
+}

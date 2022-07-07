@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import './cssScaleUp.css';
 import setAuthToken from './Utils/setAuthToken';
 import Navbar from './components/layout/Navbar';
 import Home from "./components/pages/Home";
