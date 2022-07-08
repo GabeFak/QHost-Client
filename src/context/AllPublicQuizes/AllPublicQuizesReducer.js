@@ -38,9 +38,10 @@ const Reducer = (state, action) => {
         };
 
     case GET_FROM_PUBLIC: 
+        let newestQuizesFirst = action.payload.reverse();
         return {
             ...state,
-            publicQuizes: action.payload,
+            publicQuizes: newestQuizesFirst,
             loadingPublicAccessQuizes: false
         };
 

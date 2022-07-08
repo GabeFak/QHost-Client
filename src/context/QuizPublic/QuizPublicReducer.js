@@ -21,9 +21,10 @@ const Reducer = (state, action) => {
     switch(action.type) {
 
         case GET_QUIZ_PUB:
+            let displayQuizesFromNewestToOldest = action.payload.reverse();
             return {
                 ...state,
-                publicQuizes: action.payload,
+                publicQuizes: displayQuizesFromNewestToOldest,
                 loadingPublic: false
             };
 
