@@ -5,7 +5,14 @@
         font-size: 1.4em;
     }
 
-    .home-landing-wraper, .search-wrapper, .quiz-wrapper {
+    .pipe {
+        height: 50px;
+        width: 4px;
+    }
+
+    .home-landing-wraper,
+    .search-wrapper, 
+    .quiz-wrapper {
         margin-left: 400px;
         margin-right: 400px;
     }
@@ -64,16 +71,16 @@
         font-size: 3.2em;
     }
 
-    .question-dashboard-macros{
+    .question-dashboard-macros {
         font-size: 1.4em;
     }
 
     .modal-border {
-        width: 525px;
+        width: 625px;
     }
 
     .modal-container {
-        width: 495px;
+        width: 595px;
     }
 
     .modal-title > h1 {
@@ -89,6 +96,225 @@
     .modal-button, 
     .modal-button-grey {
         font-size: 1.8em;
+    }
+}
+
+/* Re-rounding the border */
+@media screen and (min-width: 2048px) {
+    .reg-btn-home > a,
+    .submit-btn > a {
+      border-radius: 4px;
+    }
+
+    .search-bar-dropdown {
+        border-radius: 10px;
+    }
+
+    .search-bar-dropdown > input {
+        border-radius: 10px;
+    }
+
+    .search-dropdown-div {
+        border-width: 9px;
+    }
+
+    .list-group {
+        border-radius: 10px;
+    }
+
+    .header-logo h1 {
+        border-radius: 6px;
+    }  
+
+    .user-name h2 {
+        border-radius: 6px;
+    }
+
+    .header-user-name,
+    .header-links > a,
+    .header-link-blue > a {
+        border-radius: 6px;
+    }
+
+    .home-landing-wraper,
+    search-wrapper {
+        border-radius: 6px;
+        border-width: 9px;
+    }
+
+    .register-form-home {
+        border-radius: 6px;
+    }
+
+    .register-form-home h2 {
+        border-radius: 6px;
+    }
+
+    .recent-quizes-wrapper {
+        border-radius: 6px;
+        border-width: 9px;
+    }
+
+    .quiz-wrapper {
+        border-radius: 6px;
+    }
+
+    .public-quiz-list-home {
+        border-radius: 10px;
+        border-width: 6px;
+    }
+
+    .home-quiz-container > a {
+        border-width: 9px;
+    }
+
+    .quiz-wrapper {
+        border-width: 9px;
+    }
+
+    .log-form,
+    .reg-form,
+    .reg-from-login-link {
+        border-radius: 10px;
+    }
+
+    .log-form h4,
+    .link-to-reg-login h4,
+    .reg-form h4 {
+        border-radius: 6px;
+    }
+
+    .input-field > input {
+        border-radius: 4px;
+    }
+
+    footer h3 {
+        border-radius: 6px;
+    }
+
+    .dashboard-search > input {
+        border-radius: 0px 10px 10px 0px;
+    }
+
+    .public-quizes-box {
+        border-radius: 0px 10px 0px 0px;
+    }
+
+    .public-quizes-box h2 {
+        border-radius: 10px;
+    }
+
+    .quiz-element {
+        border-radius: 10px;
+    }
+
+    .works-in-progress h1 {
+        border-radius: 10px;
+    }
+
+    .make-new-quiz h1:hover,
+    .your-top-quiz h1:hover {
+        border-radius: 10px;
+        border-width: 6px;
+    }
+
+    .make-new-quiz h1:active,
+    .your-top-quiz h1:active {
+        border-width: 6px;
+    }
+
+    .dashboard-grid-container-item:nth-child(1) {
+        border-radius: 10px;
+    }
+      
+    .dashboard-grid-container-item:nth-child(2) {
+        border-radius: 10px;
+    }
+      
+    .dashboard-grid-container-item:nth-child(3) {
+        border-radius: 10px;
+    }
+
+    .quiz-dashboard-macros,
+    .quiz-editor-macros {
+        border-radius: 4px;
+    }
+
+    .quiz-name h3 {
+        border-radius: 0px 10px 10px 0px;
+    }
+
+    .quiz-q-frames {
+        border-radius: 0px 10px 0px 0px;
+    }
+
+    .quiz-q-frames h2 {
+        border-radius: 10px;
+    }
+
+    .question-element {
+        border-radius: 10px;
+    }
+
+    .question-template {
+        border-radius: 10px;
+        border-width: 6px;
+    }
+
+    .q-and-a-input input {
+        border-radius: 10px;
+    }
+
+    .three-alt-options input {
+        border-radius: 10px;
+    }
+
+    .question-dashboard-macros {
+        border-radius: 4px;
+    }
+
+    .modal-border {
+        border-radius: 10px;
+    }
+      
+    .modal-container {
+        border-radius: 10px;
+    }
+      
+    .modal-title {
+        border-radius: 10px;
+    }
+
+    .modal-selection-option > input {
+        border-radius: 10px;
+    }
+
+    .modal-button,
+    .modal-button-grey {
+        border-radius: 4px;
+        border-radius: 10px;
+    }
+
+    .quizPreviewContainerInner {
+        border-radius: 10px;
+    }
+
+    .btn {
+        border-radius: 10px;
+        border-width: 3px;
+    }
+
+    .inQuiz-question-display {
+        border-radius: 10px;
+    }
+
+    .score {
+        border-radius: 10px;
+        border-width: 3px;
+    }
+      
+    .alert {
+        border-radius: 9px;
     }
 }
 
@@ -119,14 +345,26 @@
         font-size: 1.8em;
     }
 
+    .pipe {
+        height: 60px;
+        width: 4px;
+    }
+
     .dashboard-container {
         margin-top: 186px;
     }
 
-    .home-landing-wraper, .search-wrapper, .quiz-wrapper {
+    .home-landing-wraper,
+    .search-wrapper, 
+    .quiz-wrapper {
         margin-left: 600px;
         margin-right: 600px;
     }
+
+    .quiz-wrapper {
+        margin-bottom: 1000px;
+    }
+
     .register-form-reg,
     .login-form-log {
         margin-top: 200px;
@@ -227,7 +465,7 @@
         font-size: 2em;
     }
 
-    .question-dashboard-macros{
+    .question-dashboard-macros {
         font-size: 1.8em;
         height: 60px;
         padding: 12px 50px;
@@ -235,25 +473,19 @@
 
     .modal-border {
         width: 725px;
-        max-height: 650px;
     }
 
     .modal-container {
         width: 695px;
-        height: 569px;
-    }
-
-    .modal-selection-option {
-        max-height: 405px;
     }
 
     .modal-title > h1 {
         font-size: 2.8em;
+        margin-top: 15px;
     }
 
     .modal-title > h3 {
         font-size: 2.6em;
-        margin-bottom: 40px;
     }
 
     .modal-button, 
@@ -270,8 +502,6 @@
 
     .stats-views-view-number, .stats-views-2, .stats-views {
         font-style: var(--font), Courier, monospace;
-        margin-top: 40px;
-        margin-bottom: 40px;
     }
 
     .quiz-q-frames {
@@ -371,10 +601,13 @@
         margin-top: 255px;
     }
 
-    .home-landing-wraper, .search-wrapper, .quiz-wrapper {
+    .home-landing-wraper,
+    .search-wrapper, 
+    .quiz-wrapper {
         margin-left: 600px;
         margin-right: 600px;
     }
+
     .register-form-reg,
     .login-form-log {
         margin-top: 300px;
@@ -407,14 +640,18 @@
         font-size: 2.4em;
     }
 
-    .log-form, .reg-form, .reg-from-login-link {
+    .log-form,
+    .reg-form, 
+    .reg-from-login-link {
         padding: 30px 30px;
         width: 775px;
         margin-top: 15px;
         margin-bottom: 15px;
     }
 
-    .log-form h4, .link-to-reg-login h4, .reg-form h4 {
+    .log-form h4,
+    .link-to-reg-login h4,
+    .reg-form h4 {
         padding: 9px;
         font-size: 3em;
     }
@@ -510,21 +747,17 @@
     }
 
     .modal-border {
-        width: 825px;
-        max-height: 800px;
+        width: 1025px;
     }
 
     .modal-container {
-        width: 795px;
-        height: 719px;
-    }
-
-    .modal-selection-option {
-        max-height: 405px;
+        width: 995px;
     }
 
     .modal-title > h1 {
         font-size: 3.8em;
+        margin-top: 0px;
+        margin-bottom: 15px;
     }
 
     .modal-title > h3 {
@@ -547,8 +780,10 @@
     .stats-views-view-number, .stats-views-2, .stats-views {
         font-style: var(--font), Courier, monospace;
         font-size: 3.6em;
-        margin-top: 40px;
-        margin-bottom: 40px;
+    }
+
+    .stats-views {
+        margin: unset;
     }
 
     .left-elements-quiz-creator {
@@ -631,5 +866,12 @@
 
     footer h3 {
         font-size: 3em;
+    }
+}
+
+/* button test gets weird around 2825px */
+@media screen and (max-width: 2825px) {
+    .quiz-dashboard-macros-container {
+        font-size: 1em;
     }
 }
