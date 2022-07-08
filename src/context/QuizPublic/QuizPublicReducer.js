@@ -118,7 +118,6 @@ const Reducer = (state, action) => {
         case UPDATE_PUBLIC_QUIZ:
             let publicQuizToUpdate = state.publicQuizes.filter(quiz => quiz._id !== action.payload._id);
             publicQuizToUpdate.push(action.payload);
-            console.log(publicQuizToUpdate)
             return {
                 ...state,
                 publicQuizes: publicQuizToUpdate,

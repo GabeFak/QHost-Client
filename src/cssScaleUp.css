@@ -870,8 +870,80 @@
 }
 
 /* button test gets weird around 2825px */
-@media screen and (max-width: 2825px) {
+
+@media screen and (max-width: 3100px) {
+    .quiz-dashboard-macros, 
+    .quiz-editor-macros {
+        font-size: 2em;
+        padding-top: 0px;
+    }
+}
+
+@media screen and (max-width: 2845px) {
+    .quiz-dashboard-macros,
+    .quiz-editor-macros {
+        font-size: 1.4em;
+        padding: 6px 30px;
+    }
+}
+
+@media screen and (max-width: 2650px) {
+    .quiz-dashboard-macros-container-main,
+    .quiz-dashboard-macros-container {
+        font-size: 1.2em;
+    }
+}
+
+@media screen and (max-width: 2180px) {
+    .quiz-dashboard-macros-container-main,
     .quiz-dashboard-macros-container {
         font-size: 1em;
     }
+
+    quiz-dashboard-macros,
+    .quiz-editor-macros {
+        font-size: 1em;
+        padding-top: 0px;
+    }
 }
+
+  @media screen and (max-width: 1380px) {
+    .quiz-dashboard-macros,
+    .quiz-editor-macros {
+      font-size: 0.8em;
+      padding: 4px 38px;
+    }
+  }
+  
+  @media screen and (max-width: 1169px) {
+    .quiz-dashboard-macros,
+    .quiz-editor-macros {
+      padding: 4px 20px;
+    }
+  }
+  
+  @media screen and (max-width: 800px) {
+    .quiz-dashboard-macros,
+    .quiz-editor-macros {
+      font-size: 0.7em;
+    }
+  }
+
+
+  @media screen and (max-width: 700px) {
+    .quiz-dashboard-macros-container {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  
+    .quiz-dashboard-macros-container-main {
+      margin-left: 0px;
+      margin-right: 0px;
+    }
+  
+    .quiz-dashboard-macros,
+    .quiz-editor-macros {
+      padding: 2px 8px;
+    }
+  }
+  

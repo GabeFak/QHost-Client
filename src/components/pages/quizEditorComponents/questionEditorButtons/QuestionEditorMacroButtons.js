@@ -61,6 +61,13 @@ const QuestionEditorMacroButtons = () => {
     };
 
     const linkToPreview = () => {
+        if(!quizEdit._id && isQuizPublished.isPub === "Unpublished") {
+            addQuizToWip(quizEdit);
+        } else if(isQuizPublished.isPub === "Unpublished") {
+            updatePrivateQuiz(quizEdit);
+        }else if(isQuizPublished.isPub === "Published") {
+            updatePublicQuiz(quizEditPublic);
+        }
         nav(`/QuizPreview/${isQuizPublished.quizName}/${isQuizPublished.isPub}`);
     };
 
